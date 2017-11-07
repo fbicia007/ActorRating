@@ -1,10 +1,11 @@
 .swiper {
-  height: 400rpx;
+  display: flex;
 }
+
 .swiper image {
-  height: 100%;
   width: 100%;
 }
+
 .item {
   display: flex;
   padding: 20rpx 20rpx;

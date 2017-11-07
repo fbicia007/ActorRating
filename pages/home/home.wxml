@@ -1,7 +1,7 @@
 <swiper class="swiper" indicator-dots="true" autoplay="true" interval="2000" duration="1000">
-  <block wx:for="{{movies}}" wx:for-index="index" wx:key="*this">
+  <block wx:for="{{releasedMovies}}" wx:for-index="index" wx:key="*this">
     <swiper-item>
-      <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
+      <image id='{{item.id}}' src="{{item.posterH}}" class="slide-image" mode="widthFix" bindtap="onSwiperClicked"/>
     </swiper-item>
   </block>
 </swiper>
