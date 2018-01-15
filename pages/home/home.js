@@ -29,7 +29,23 @@ Page({
       title: '演员评分',
     })
 
+    // wx.request({
+    //   url: "https://xuwang.de/actorrating/releasedMovies",
+    //   data: {
+    //     x: '',
+    //     y: ''
+    //   },
+    //   header: {
+    //     "Content-Type":"application/json"
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //   },
+    //   fail: function (err) {
+    //     console.log(err)
+    //   }
 
+    // })
   },
 
   /**
