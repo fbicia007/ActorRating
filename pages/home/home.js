@@ -6,19 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // movies: [
-    //   //{ url: "http://www.test.com/image/1111.jpg" },
-    //   { url: "../../images/烈日灼心-h.jpeg" },
-    //   { url: "../../images/绣春刀2-h.jpeg" },
-    //   { url: "../../images/战狼2-h.jpeg" },
-    //   { url: "../../images/记忆大师-h.jpeg" }
-    // ],
-    releasedMovies: app.globalData.releasedMovies,
-    list:
-    [
-      { id: 0, name: "上映热播"}, 
-      { id: 1, name: "即将上映"}
-    ] 
+    films: [{}, {}]
   },
 
   /**
@@ -29,23 +17,26 @@ Page({
       title: '演员评分',
     })
 
-    // wx.request({
-    //   url: "https://xuwang.de/actorrating/releasedMovies",
-    //   data: {
-    //     x: '',
-    //     y: ''
-    //   },
-    //   header: {
-    //     "Content-Type":"application/json"
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data)
-    //   },
-    //   fail: function (err) {
-    //     console.log(err)
-    //   }
+    wx.showLoading({
+      title: '全力加载中...',
+    })
 
-    // })
+    var that = this
+    var statusList = Object.values(app.globalData.statusList).reverse()
+    var titlelist = app.globalData.pageTypelist
+    for (let i = 0; i < statusList.length; i++) {
+      console.log("status: ", statusList[i])
+      app.getFilmInfo(statusList[i], function (res) {
+        wx.hideLoading()
+        var data = res.data
+
+        that.data.films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
+        that.setData({
+          films: that.data.films
+        })
+        console.log("films: ", that.data.films)
+      })
+    }
   },
 
   /**
@@ -97,32 +88,13 @@ Page({
 
   },
 
-  onItemClicked: function(res) {
-    var id = res.currentTarget.dataset.id
-    if (id == 0) {
-      wx.navigateTo({
-        url: '../released/released',
-        success: function(res) {
-
-        }
-      })
-    } else if (id == 1) {
-      wx.navigateTo({
-        url: '../willRelease/willRelease',
-        success: function (res) {
-
-        }
-      })
-    }
-  },
-
-  onSwiperClicked: function(res) {
-    var id = res.currentTarget.id
+  onDetailClicked: function (e) {
+    var data = e.currentTarget.dataset
+    console.log("click id: ", data.id, " stauts: ", data.status)
     wx.navigateTo({
-      url: '../movieDetails/movieDetails?id=' + id + "&released=" + 0,
-      success: function (res) {
-
-      }
+      url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
     })
   }
+
+
 })

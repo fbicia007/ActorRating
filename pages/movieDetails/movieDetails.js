@@ -26,27 +26,46 @@ Page({
    */
   onLoad: function (options) {
 
+    var that = this
     var id = options.id
-    var released = options.released
+    var status = app.globalData.statusList[options.status]
     var movies = ""
 
-    if (released == 0) {
-      movies = app.globalData.releasedMovies
-    } else {
-      movies = app.globalData.willReleaseMovies
-    }
+    wx.showLoading({
+      title: '全力加载中...',
+    })
 
-    for (var i = 0; i < movies.length; i++) {
-      if (id == movies[i].id) {
-        wx.setNavigationBarTitle({
-          title: movies[i].title,
-        })
-        this.setData({
-          movie: movies[i],
-          actors: movies[i].actors
-        })
-      }
-    }
+    app.getFilmDetail(status, id, function (res) {
+      wx.hideLoading()
+      var data = res.data[0]
+      console.log("data: ", data)
+
+      wx.setNavigationBarTitle({
+        title: data.title,
+      })
+      that.setData({
+        movie: data,
+        actors: data.actors
+      })
+    })
+
+    // if (released == 0) {
+    //   movies = app.globalData.releasedMovies
+    // } else {
+    //   movies = app.globalData.willReleaseMovies
+    // }
+
+    // for (var i = 0; i < movies.length; i++) {
+    //   if (id == movies[i].id) {
+    //     wx.setNavigationBarTitle({
+    //       title: movies[i].title,
+    //     })
+    //     this.setData({
+    //       movie: movies[i],
+    //       actors: movies[i].actors
+    //     })
+    //   }
+    // }
 
     let { tabs } = this.data;
     var res = wx.getSystemInfoSync()
@@ -111,7 +130,7 @@ Page({
   },
 
   loadMoviePoster: function (e) {
-    var imageHeight = e.detail.height * ( this.data.moviePosterWidth / e.detail.width)
+    var imageHeight = e.detail.height * (this.data.moviePosterWidth / e.detail.width)
     let { stv } = this.data;
     stv.pageHeight = this.data.stv.windowHeight - imageHeight - 36
     this.setData({

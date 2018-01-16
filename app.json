@@ -1,12 +1,9 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/released/released",
     "pages/willRelease/willRelease",
-    "pages/movieDetails/movieDetails",
-    "pages/test/test"
+    "pages/movieDetails/movieDetails"
   ],
   "window": {
     "backgroundTextStyle": "light",

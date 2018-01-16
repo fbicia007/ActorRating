@@ -1,14 +1,31 @@
-<swiper class="swiper" indicator-dots="true" autoplay="true" interval="2000" duration="1000">
+<import src="../template/movieThumb.wxml" />
+<view class="film-topcontainer" style="display: flex;flex-direction: column;">
+  <view class="film-container" wx:for-items="{{films}}" wx:for-item="filminfo" wx:key="id">
+    <view class="film-header" scroll-x="false">
+      <text class="list-title">{{filminfo.title}}</text>
+      <button bindtap="toView" data-type="{{filminfo.status}}" class="more-btn" plain="false">更多></button>
+    </view>
+    <view class="filmlist-container">
+
+      <scroll-view scroll-x="true" class="filmlist">
+        <template is="movieThumb" wx:for-items="{{filminfo.data}}" wx:for-item="film" wx:key="id" data="{{...film}}">
+        </template>
+      </scroll-view>
+    </view>
+
+  </view>
+</view>
+
+<!-- <swiper class="swiper" indicator-dots="true" autoplay="true" interval="2000" duration="1000">
   <block wx:for="{{releasedMovies}}" wx:for-index="index" wx:key="*this">
     <swiper-item>
-      <image id='{{item.id}}' src="{{item.posterH}}" class="slide-image" mode="widthFix" bindtap="onSwiperClicked"/>
+      <image id='{{item.id}}' src="{{item.posterH}}" class="slide-image" mode="widthFix" bindtap="onSwiperClicked" />
     </swiper-item>
   </block>
 </swiper>
 
 <view wx:for="{{list}}" wx:key="*this">
   <view class='item' data-id='{{item.id}}' bindtap='onItemClicked'>
-      <text class='name'>{{item.name}}</text>
+    <text class='name'>{{item.name}}</text>
   </view>
-
-</view>
+</view> -->
