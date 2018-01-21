@@ -3,7 +3,7 @@
   <view class="film-container" wx:for-items="{{films}}" wx:for-item="filminfo" wx:key="id">
     <view class="film-header" scroll-x="false">
       <text class="list-title">{{filminfo.title}}</text>
-      <button bindtap="toView" data-type="{{filminfo.status}}" class="more-btn" plain="false">更多></button>
+      <button bindtap="onMoreClicked" data-type="{{filminfo.status}}" class="more-btn" plain="false">更多></button>
     </view>
     <view class="filmlist-container">
 

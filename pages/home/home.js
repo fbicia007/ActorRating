@@ -94,7 +94,14 @@ Page({
     wx.navigateTo({
       url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
     })
-  }
+  },
 
+  onMoreClicked: function (e) {
+    var temp = e.currentTarget.dataset;
+    console.log("tmp: ", temp.type)
+    wx.navigateTo({
+      url: '../list/list?type=' + temp.type
+    })
+  }
 
 })

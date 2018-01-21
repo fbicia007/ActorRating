@@ -1,8 +1,0 @@
-<scroll-view class="page-body" scroll-y="true">
-<view wx:for="{{willReleaseMovies}}" wx:key="*this">
-  <view class="item" data-id="{{item.id}}"  bindtap="onItemClicked">
-    <image class="movie-poster" src="{{item.posterH}}" style='width:100%' mode="widthFix"></image>
-    <text class="title">{{item.title}}</text>
-  </view>
-</view>
-</scroll-view>
