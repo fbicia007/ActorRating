@@ -39,12 +39,11 @@ App({
     statusList: { "0": "coming_soon", "1": "in_theaters" },
     pageTypelist: { "coming_soon": "即将上映", "in_theaters": "正在热映" }
   },
-  getFilmInfo: function (pageType, cb) {
+  getFilmInfo: function (pageType, start, count, cb) {
     var that = this
 
     wx.request({
-      // url: that.globalData.basicUrl + "/" + pageType + '?start=' + start + '&count=' + count,
-      url: that.globalData.basicUrl + "/" + pageType,
+      url: that.globalData.basicUrl + "/" + pageType + '?start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },

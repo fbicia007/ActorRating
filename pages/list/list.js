@@ -7,8 +7,10 @@ Page({
    */
   data: {
     films: [],
-    hasMore: true,
-    pageType: ""
+    hasMore: false,
+    pageType: "",
+    start: 0,
+    count: 0
   },
 
   /**
@@ -16,7 +18,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      pageType: options.type
+      pageType: options.type,
+      start: 0,
+      count: 10
     })
     var title = app.globalData.pageTypelist[options.type];
     wx.setNavigationBarTitle({ title: title })
@@ -27,7 +31,8 @@ Page({
     //   fail: function (res) { },
     //   complete: function (res) { },
     // })
-    this.getFilm();
+
+    this.getFilm(this.data.start, this.data.count);
 
   },
 
@@ -70,8 +75,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.hasMore) {//如果还有数据未请求，就继续请求
-      this.getFilm();
+
+    if (this.data.hasMore) {
+      var count = this.data.count
+      this.setData({
+        start: 0 + count,
+        count: 5 + count
+      })
+      this.getFilm(this.data.start, this.data.count);
     }
   },
 
@@ -82,16 +93,15 @@ Page({
 
   },
 
-  getFilm: function () {
+  getFilm: function (start, count) {
     var that = this;
 
-    app.getFilmInfo(this.data.pageType, function (res) {
+    app.getFilmInfo(this.data.pageType, start, count, function (res) {
       wx.hideLoading();
       var data = res.data;
-      console.log("data: ", data)
-
+      var films = that.data.films.concat(data)
       that.setData({
-        films: data
+        films: films
         // total: data.total
       })
 

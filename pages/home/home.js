@@ -26,7 +26,7 @@ Page({
     var titlelist = app.globalData.pageTypelist
     for (let i = 0; i < statusList.length; i++) {
       console.log("status: ", statusList[i])
-      app.getFilmInfo(statusList[i], function (res) {
+      app.getFilmInfo(statusList[i], 0, 7, function (res) {
         wx.hideLoading()
         var data = res.data
 
