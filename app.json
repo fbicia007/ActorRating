@@ -2,11 +2,12 @@
   "pages": [
     "pages/home/home",
     "pages/movieDetails/movieDetails",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#42BD56",
+    "navigationBarTextStyle": "white"
   }
 }

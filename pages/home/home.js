@@ -102,6 +102,12 @@ Page({
     wx.navigateTo({
       url: '../list/list?type=' + temp.type
     })
+  },
+
+  onSearchClicked: function (e) {
+    wx.navigateTo({
+      url: '../search/search'
+    })
   }
 
 })

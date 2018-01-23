@@ -1,5 +1,8 @@
 <!--pages/list/list.wxml-->
 <import src="../template/movieThumb.wxml" />
+<view class="search-container">
+  <input type="text" bindtap="onSearchClicked" disabled='true' placeholder-style="font-size:18rpx" placeholder="搜索"></input><icon bindtap="onSearchClicked"  type="search" size="10"/>
+</view>
 <scroll-view class="">
   <view class="film-container">
      <template is="movieThumb" wx:for-items="{{films}}"  wx:for-item="film" wx:key="id" data="{{...film}}">   

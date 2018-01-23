@@ -125,4 +125,10 @@ Page({
       url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
     })
   },
+
+  onSearchClicked: function (e) {
+    wx.navigateTo({
+      url: '../search/search'
+    })
+  }
 })
