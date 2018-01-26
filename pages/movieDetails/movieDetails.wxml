@@ -7,16 +7,16 @@
     <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
   </view>
   <view class="scroll-view">
-    <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
+    <view class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
       <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" class="one-scene">
         <scroll-view style="height:{{stv.pageHeight}}px" scroll-y>
           <view hidden='{{activeTab == 0}}'>
             <view wx:for="{{actors}}" wx:key="unique">
-              <view class='item' data-id='{{item.id}}' bindtap='onItemClicked'>
+              <view class='item' data-id='{{item.id}}'>
                 <image class="actor-photo" src="{{item.photo}}" mode='aspectFit'></image>
                 <text class='actor-name'>{{item.name}} 饰演 {{item.role}}</text>
-                <view class='actor-like'>
-                  <image class='actor-like-image' src='../../images/heart.png' mode='aspectFit'></image>
+                <view class='actor-like' bindtap='onLikeClicked'>
+                  <image class='actor-like-image' src='../../images/like.png' mode='aspectFit'></image>
                   <text class='actor-like-count'>{{item.like}}</text>
                 </view>
               </view>
