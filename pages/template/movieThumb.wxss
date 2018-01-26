@@ -12,12 +12,6 @@
   display: block;
 }
 .film-title{
-  font-size: 0.6rem;
   font-weight: 600;
-  line-height: 0.8;
+  line-height: 1;
 }
-/* .film-rate{
-  font-size: 0.4rem;
-  display: block;
-  line-height: 0.7;
-} */

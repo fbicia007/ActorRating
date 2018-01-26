@@ -6,14 +6,14 @@
   align-items: center;
   background-color: #42BD56;
   color: #FFF;
-  height: 60rpx;
+  height: 80rpx;
   padding: 10rpx 20rpx;
   z-index: 100;
 }
 .search-container input {
   background: #FFF;
   color: #AAA;
-  padding: 0 10rpx;
+  padding: 5px 10rpx;
   height: 40rpx;
   width: 100%;
   border-radius: 8rpx;
@@ -21,5 +21,7 @@
 .search-container icon {
   position: absolute;
   z-index: 10;
+  top: 50%;
+  margin-top: -20rpx;
   right: 40rpx;
 }

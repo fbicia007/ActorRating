@@ -1,6 +1,6 @@
 <import src="../template/movieThumb.wxml" />
 <view class="search-container">
-  <input type="text" bindtap="onSearchClicked" disabled='true' placeholder-style="font-size:18rpx" placeholder="搜索"></input><icon bindtap="onSearchClicked"  type="search" size="10"/>
+  <input type="text" bindtap="onSearchClicked" disabled='true' placeholder="搜索"></input><icon bindtap="onSearchClicked"  type="search" size="20"/>
 </view>
 <view class="film-topcontainer" style="display: flex;flex-direction: column;">
   <view class="film-container" wx:for-items="{{films}}" wx:for-item="filminfo" wx:key="id">
@@ -18,17 +18,3 @@
 
   </view>
 </view>
-
-<!-- <swiper class="swiper" indicator-dots="true" autoplay="true" interval="2000" duration="1000">
-  <block wx:for="{{releasedMovies}}" wx:for-index="index" wx:key="*this">
-    <swiper-item>
-      <image id='{{item.id}}' src="{{item.posterH}}" class="slide-image" mode="widthFix" bindtap="onSwiperClicked" />
-    </swiper-item>
-  </block>
-</swiper>
-
-<view wx:for="{{list}}" wx:key="*this">
-  <view class='item' data-id='{{item.id}}' bindtap='onItemClicked'>
-    <text class='name'>{{item.name}}</text>
-  </view>
-</view> -->

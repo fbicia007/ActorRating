@@ -1,4 +1,4 @@
 <!--pages/search/search.wxml-->
 <view class="search-container">
-  <input type="text" placeholder-style="font-size:18rpx" bindinput="searchInputEvent" placeholder="搜索"></input><icon type="search" size="10"/>
+  <input type="text" bindinput="searchInputEvent" placeholder="搜索"></input><icon type="search" size="20"/>
 </view>
