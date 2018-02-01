@@ -1,11 +1,11 @@
 <!--pages/search/search.wxml-->
 <view class="search-container">
-  <input type="text" bindinput="searchInputEvent" placeholder="搜索" auto-focus></input>
-  <icon type="search" size="20" />
+  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='true'></input>
+  <icon type="clear" bindtap='onClearClicked' size="20" />
 </view>
 <scroll-view class="page-body" scroll-y="true">
   <view wx:for="{{films}}" wx:key="unique">
-    <view class='item' data-id='{{item.id}}'>
+    <view class='item' data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
       <image class="film-photo" src="{{item.posterV}}" mode='aspectFit'></image>
       <text class='film-name'>{{item.title}}</text>
     </view>

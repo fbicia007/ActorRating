@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    inputText: "",
     films: []
   },
 
@@ -20,7 +21,7 @@ Page({
 
     var that = this
     setTimeout(function () {
-      onSearchRequest(that, "")
+      onSearchRequest(that, that.data.inputText)
     }, 500)
   },
 
@@ -82,6 +83,22 @@ Page({
     }, 300)
     
   },
+
+  onClearClicked: function (e) {
+    this.setData({
+      inputText: ""
+    })
+    onSearchRequest(this, this.data.inputText)
+  },
+
+  onFilmClicked: function (e) {
+    var data = e.currentTarget.dataset
+    console.log("data: ", data)
+    console.log("click id: ", data.id, " stauts: ", data.status)
+    wx.navigateTo({
+      url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
+    })
+  }
 })
 
 function onSearchRequest(that, value) {

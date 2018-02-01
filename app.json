@@ -10,24 +10,5 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#42BD56",
     "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "color": "#bfbfbf",
-    "selectedColor": "#42BD56",
-    "borderStyle": "white",
-    "list": [
-      {
-        "selectedIconPath": "images/movie_selected.png",
-        "iconPath": "images/movie_unselected.png",
-        "pagePath": "pages/home/home",
-        "text": "电影"
-      },
-      {
-        "selectedIconPath": "images/i_selected.png",
-        "iconPath": "images/i_unselected.png",
-        "pagePath": "pages/me/me",
-        "text": "我"
-      }
-    ]
   }
 }
