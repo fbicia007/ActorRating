@@ -1,5 +1,5 @@
 // pages/list/list.js
-var app = getApp();
+var app = getApp()
 Page({
 
   /**
@@ -22,7 +22,7 @@ Page({
       start: 0,
       count: 10
     })
-    var title = app.globalData.pageTypelist[options.type];
+    var title = app.globalData.pageTypelist[options.type]
     wx.setNavigationBarTitle({ title: title })
     // wx.showLoading({
     //   title: '玩命加载中',
@@ -32,7 +32,7 @@ Page({
     //   complete: function (res) { },
     // })
 
-    this.getFilm(this.data.start, this.data.count);
+    this.getFilm(this.data.start, this.data.count)
 
   },
 
@@ -82,7 +82,7 @@ Page({
         start: 0 + count,
         count: 5 + count
       })
-      this.getFilm(this.data.start, this.data.count);
+      this.getFilm(this.data.start, this.data.count)
     }
   },
 
@@ -94,11 +94,11 @@ Page({
   },
 
   getFilm: function (start, count) {
-    var that = this;
+    var that = this
 
     app.getFilmInfo(this.data.pageType, start, count, function (res) {
-      wx.hideLoading();
-      var data = res.data;
+      wx.hideLoading()
+      var data = res.data
       var films = that.data.films.concat(data)
       that.setData({
         films: films

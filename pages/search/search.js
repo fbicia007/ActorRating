@@ -1,11 +1,13 @@
-// pages/search/search.js
+var app = getApp()
+var timer
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    films: []
   },
 
   /**
@@ -15,6 +17,11 @@ Page({
     wx.setNavigationBarTitle({
       title: '搜索影片',
     })
+
+    var that = this
+    setTimeout(function () {
+      onSearchRequest(that, "")
+    }, 500)
   },
 
   /**
@@ -64,5 +71,25 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  
+  searchInputEvent: function (e) {
+    var value = e.detail.value
+    clearTimeout(timer)
+    var that = this
+    timer = setTimeout(function() {
+      onSearchRequest(that, value)
+    }, 300)
+    
+  },
 })
+
+function onSearchRequest(that, value) {
+  app.getSearchRequest(value, function (res) {
+    var data = res.data
+    console.log("data: ", data)
+    that.setData({
+      films: data
+    })
+  })
+}

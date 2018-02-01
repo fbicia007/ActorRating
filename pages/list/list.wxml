@@ -1,7 +1,8 @@
 <!--pages/list/list.wxml-->
 <import src="../template/movieThumb.wxml" />
 <view class="search-container">
-  <input type="text" bindtap="onSearchClicked" disabled='true' placeholder-style="font-size:18rpx" placeholder="搜索"></input><icon bindtap="onSearchClicked"  type="search" size="10"/>
+  <input type="text" bindtap="onSearchClicked" disabled='true' placeholder="搜索"></input>
+  <icon bindtap="onSearchClicked"  type="search" size="20"/>
 </view>
 <scroll-view class="">
   <view class="film-container">

@@ -25,3 +25,21 @@
   margin-top: -20rpx;
   right: 40rpx;
 }
+.item {
+  display: flex;
+  padding: 10rpx 10rpx;
+  border-bottom: 2rpx solid #eee;
+  
+}
+
+.item .film-photo {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.item .film-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

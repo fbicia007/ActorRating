@@ -64,5 +64,17 @@ App({
         cb(res)
       }
     })
+  },
+  getSearchRequest: function (text, cb) {
+    var that = this
+    wx.request({
+      url: that.globalData.basicUrl + "/search?srch_text=" + text,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
   }
 })
