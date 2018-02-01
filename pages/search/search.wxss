@@ -1,35 +1,38 @@
 /* pages/search/search.wxss */
+
 .search-container {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background-color: #42BD56;
-  color: #FFF;
+  background-color: #42bd56;
+  color: #aaa;
   height: 80rpx;
   padding: 10rpx 20rpx;
   z-index: 100;
 }
+
 .search-container input {
-  background: #FFF;
-  color: #AAA;
+  background: #fff;
+  color: #aaa;
   padding: 5px 10rpx;
   height: 40rpx;
-  width: 100%;
+  width: 85%;
   border-radius: 8rpx;
 }
-.search-container icon {
+
+.search-container text {
   position: absolute;
-  z-index: 10;
-  top: 50%;
-  margin-top: -20rpx;
-  right: 40rpx;
+  display: flex;
+  align-items: center;
+  right: 20rpx;
+  color: #fff;
 }
+
 .item {
   display: flex;
   padding: 10rpx 10rpx;
   border-bottom: 2rpx solid #eee;
-  
 }
 
 .item .film-photo {

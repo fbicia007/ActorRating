@@ -8,6 +8,7 @@ Page({
    */
   data: {
     inputText: "",
+    focus: true,
     films: []
   },
 
@@ -22,7 +23,7 @@ Page({
     var that = this
     setTimeout(function () {
       onSearchRequest(that, that.data.inputText)
-    }, 500)
+    }, 300)
   },
 
   /**
@@ -50,7 +51,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    this.setData({
+      focus: false
+    })
+    wx.hideKeyboard()
   },
 
   /**

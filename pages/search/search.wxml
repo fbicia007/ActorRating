@@ -1,7 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class="search-container">
-  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='true'></input>
-  <icon type="clear" bindtap='onClearClicked' size="20" />
+  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='{{focus}}'></input>
+  <text bindtap='onClearClicked'>取消</text>
 </view>
 <scroll-view class="page-body" scroll-y="true">
   <view wx:for="{{films}}" wx:key="unique">
