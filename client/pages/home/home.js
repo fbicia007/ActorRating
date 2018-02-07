@@ -25,68 +25,11 @@ Page({
       title: '演员评分',
     })
 
-    if (this.data.logged) return
-
-    util.showBusy('正在登录')
-    var that = this
-
-    // 调用登录接口
-    qcloud.login({
-      success(result) {
-        console.log("login: ", result)
-        if (result) {
-          util.showSuccess('登录成功')
-          that.setData({
-            userInfo: result,
-            logged: true
-          })
-        } else {
-          // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-          qcloud.request({
-            url: config.service.requestUrl,
-            login: true,
-            success(result) {
-              util.showSuccess('登录成功')
-              that.setData({
-                userInfo: result.data.data,
-                logged: true
-              })
-            },
-
-            fail(error) {
-              util.showModel('请求失败', error)
-              console.log('request fail', error)
-            }
-          })
-        }
-      },
-
-      fail(error) {
-        util.showModel('登录失败', error)
-        console.log('登录失败', error)
-      }
-    })
-
-    // wx.showLoading({
-    //   title: '全力加载中...',
-    // })
-
-    // var that = this
-    // var statusList = Object.values(app.globalData.statusList).reverse()
-    // var titlelist = app.globalData.pageTypelist
-    // for (let i = 0; i < statusList.length; i++) {
-    //   console.log("status: ", statusList[i])
-    //   app.getFilmInfo(statusList[i], 0, 7, function (res) {
-    //     wx.hideLoading()
-    //     var data = res.data
-
-    //     that.data.films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
-    //     that.setData({
-    //       films: that.data.films
-    //     })
-    //     console.log("films: ", that.data.films)
-    //   })
-    // }
+    if (this.data.logged) {
+      loadFilms(this)
+    } else {
+      login(this)
+    }
   },
 
   /**
@@ -161,3 +104,74 @@ Page({
   },
 
 })
+
+function login(that) {
+  util.showBusy('正在登录')
+
+  // 调用登录接口
+  qcloud.login({
+    success(result) {
+      if (result) {
+        util.showSuccess('登录成功')
+        that.setData({
+          userInfo: result,
+          logged: true
+        })
+        loadFilms(that)
+      } else {
+        // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
+        qcloud.request({
+          url: config.service.requestUrl,
+          login: true,
+          success(result) {
+            util.showSuccess('登录成功')
+            that.setData({
+              userInfo: result.data.data,
+              logged: true
+            })
+            loadFilms(that)
+          },
+
+          fail(error) {
+            util.showModel('请求失败', error)
+            console.log('request fail', error)
+          }
+        })
+      }
+    },
+
+    fail(error) {
+      util.showModel('登录失败', error)
+      console.log('登录失败', error)
+    }
+  })
+}
+
+function loadFilms(that) {
+  var showLoading = true
+  setTimeout(function () {
+    util.hideToast()
+    if (showLoading) {
+      wx.showLoading({
+        title: '全力加载中...',
+      })
+    }
+  }, 1000)
+
+  var statusList = Object.values(app.globalData.statusList).reverse()
+  var titlelist = app.globalData.pageTypelist
+  for (let i = 0; i < statusList.length; i++) {
+    console.log("status: ", statusList[i])
+    app.getFilmInfo(statusList[i], 0, 7, function (res) {
+      showLoading = false
+      wx.hideLoading()
+      var data = res.data
+
+      that.data.films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
+      that.setData({
+        films: that.data.films
+      })
+      console.log("films: ", that.data.films)
+    })
+  }
+}
