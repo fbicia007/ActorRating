@@ -20,7 +20,7 @@ Page({
     this.setData({
       pageType: options.type,
       start: 0,
-      count: 10
+      count: 12
     })
     var title = app.globalData.pageTypelist[options.type]
     wx.setNavigationBarTitle({ title: title })
@@ -80,7 +80,7 @@ Page({
       var count = this.data.count
       this.setData({
         start: 0 + count,
-        count: 5 + count
+        count: 12 + count
       })
       this.getFilm(this.data.start, this.data.count)
     }

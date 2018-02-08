@@ -9,7 +9,9 @@ Page({
   data: {
     inputText: "",
     focus: true,
-    films: []
+    films: [],
+    start: 0,
+    count: 0
   },
 
   /**
@@ -18,6 +20,12 @@ Page({
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '搜索影片',
+    })
+
+    this.setData({
+      pageType: options.type,
+      start: 0,
+      count: 20
     })
 
     var that = this
@@ -61,14 +69,22 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var count = this.data.count
+    this.setData({
+      start: 0 + count,
+      count: 20 + count
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var count = this.data.count
+    this.setData({
+      start: 0 + count,
+      count: 12 + count
+    })
   },
 
   /**
