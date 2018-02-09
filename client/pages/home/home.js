@@ -25,13 +25,13 @@ Page({
       title: '演员评分',
     })
 
-    loadFilms(this)
+    // loadFilms(this)
 
-    // if (this.data.logged) {
-    //   loadFilms(this)
-    // } else {
-    //   login(this)
-    // }
+    if (this.data.logged) {
+      loadFilms(this)
+    } else {
+      login(this)
+    }
   },
 
   /**
@@ -160,10 +160,12 @@ function loadFilms(that) {
     }
   }, 1000)
 
-  var statusList = Object.values(app.globalData.statusList).reverse()
+  var statusList = new Array()
+  statusList.push(app.globalData.statusList[1])
+  statusList.push(app.globalData.statusList[0])
+
   var titlelist = app.globalData.pageTypelist
   for (let i = 0; i < statusList.length; i++) {
-    console.log("status: ", statusList[i])
     app.getFilmInfo(statusList[i], 0, 7, function (res) {
       showLoading = false
       wx.hideLoading()
@@ -173,7 +175,6 @@ function loadFilms(that) {
       that.setData({
         films: that.data.films
       })
-      console.log("films: ", that.data.films)
     })
   }
 }

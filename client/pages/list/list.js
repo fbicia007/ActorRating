@@ -7,7 +7,7 @@ Page({
    */
   data: {
     films: [],
-    hasMore: false,
+    hasMore: true,
     pageType: "",
     start: 0,
     count: 0
@@ -24,13 +24,6 @@ Page({
     })
     var title = app.globalData.pageTypelist[options.type]
     wx.setNavigationBarTitle({ title: title })
-    // wx.showLoading({
-    //   title: '玩命加载中',
-    //   mask: true,
-    //   success: function (res) { },
-    //   fail: function (res) { },
-    //   complete: function (res) { },
-    // })
 
     this.getFilm(this.data.start, this.data.count)
 
@@ -75,7 +68,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
     if (this.data.hasMore) {
       var count = this.data.count
       this.setData({
@@ -96,24 +88,27 @@ Page({
   getFilm: function (start, count) {
     var that = this
 
+    wx.showLoading({
+      title: '玩命加载中',
+    })
+
     app.getFilmInfo(this.data.pageType, start, count, function (res) {
       wx.hideLoading()
-      var data = res.data
+      var data = []
+      for (var i = 0; i < res.data.length; i++) {
+        if (res.data[i] != null) {
+          data.push(res.data[i])
+        } else {
+          that.setData({
+            hasMore: false
+          })
+        }
+      }
+
       var films = that.data.films.concat(data)
       that.setData({
         films: films
-        // total: data.total
       })
-
-      // if (that.data.start == that.data.total) {
-      //   that.setData({
-      //     hasMore: false,
-      //   })
-      //   wx.showToast({
-      //     title: '没有更多了',
-      //     duration: 1000
-      //   })
-      // }
 
     })
   }, 

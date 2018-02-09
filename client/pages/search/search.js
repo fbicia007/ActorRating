@@ -23,7 +23,6 @@ Page({
     })
 
     this.setData({
-      pageType: options.type,
       start: 0,
       count: 20
     })
