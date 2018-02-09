@@ -133,6 +133,9 @@ Page({
   },
 
   onLikeClicked: function(e) {
-    console.log("onLikeClicked")
+    var data = e.currentTarget.dataset
+    var movieId = data.movieId
+    var actorId = data.actorId
+    console.log("onLikeClicked movieId:", movieId, "actorId:", actorId, "openId:", app.globalData.userInfo.openId)
   }
 })

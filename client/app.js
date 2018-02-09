@@ -38,10 +38,10 @@ App({
       }
     })
   },
-  getSearchRequest: function (text, cb) {
+  getSearchRequest: function (text, start, count, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/search?srch_text=" + text,
+      url: that.globalData.basicUrl + "/search?srch_text=" + text + '&start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },

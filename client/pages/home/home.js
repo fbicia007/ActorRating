@@ -109,16 +109,17 @@ Page({
 
 function login(that) {
   util.showBusy('正在登录')
-
   // 调用登录接口
   qcloud.login({
     success(result) {
       if (result) {
+        console.log("loginSuccess1: ", result)
         util.showSuccess('登录成功')
         that.setData({
           userInfo: result,
           logged: true
         })
+        app.globalData.userInfo = result
         loadFilms(that)
       } else {
         // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
@@ -127,10 +128,12 @@ function login(that) {
           login: true,
           success(result) {
             util.showSuccess('登录成功')
+            console.log("loginSuccess2: ", result)
             that.setData({
               userInfo: result.data.data,
               logged: true
             })
+            app.globalData.userInfo = result.data.data
             loadFilms(that)
           },
 

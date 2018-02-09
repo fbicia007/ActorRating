@@ -8,10 +8,12 @@ Page({
    */
   data: {
     inputText: "",
+    searchText: "",
     focus: true,
     films: [],
     start: 0,
-    count: 0
+    count: 0,
+    hasMore: true
   },
 
   /**
@@ -24,12 +26,12 @@ Page({
 
     this.setData({
       start: 0,
-      count: 20
+      count: 15
     })
 
     var that = this
     setTimeout(function () {
-      onSearchRequest(that, that.data.inputText)
+      onSearchRequest(that, that.data.inputText, that.data.start, that.data.count)
     }, 300)
   },
 
@@ -68,22 +70,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    var count = this.data.count
-    this.setData({
-      start: 0 + count,
-      count: 20 + count
-    })
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var count = this.data.count
-    this.setData({
-      start: 0 + count,
-      count: 12 + count
-    })
+    if (this.data.hasMore) {
+      var count = this.data.count
+      this.setData({
+        start: 0 + count,
+        count: 15 + count
+      })
+      onSearchRequest(this, this.data.searchText, this.data.start, this.data.count)
+    }
   },
 
   /**
@@ -98,7 +99,7 @@ Page({
     clearTimeout(timer)
     var that = this
     timer = setTimeout(function() {
-      onSearchRequest(that, value)
+      onSearchRequest(that, value, 0, 15)
     }, 300)
     
   },
@@ -107,7 +108,7 @@ Page({
     this.setData({
       inputText: ""
     })
-    onSearchRequest(this, this.data.inputText)
+    onSearchRequest(this, this.data.inputText, 0, 15)
   },
 
   onFilmClicked: function (e) {
@@ -120,12 +121,34 @@ Page({
   }
 })
 
-function onSearchRequest(that, value) {
-  app.getSearchRequest(value, function (res) {
-    var data = res.data
-    console.log("data: ", data)
+function onSearchRequest(that, value, start, count) {
+  that.setData({
+    searchText: value
+  })
+  app.getSearchRequest(value, start, count, function (res) {
+    var data = []
+    for (var i = 0; i < res.data.length; i++) {
+      if (res.data[i] != null) {
+        data.push(res.data[i])
+        that.setData({
+          hasMore: true
+        })
+      } else {
+        that.setData({
+          hasMore: false
+        })
+      }
+    }
+
+    var films = []
+    if (start == 0) {
+      films = data
+    } else {
+      films = that.data.films.concat(data)
+    }
+
     that.setData({
-      films: data
+      films: films
     })
   })
 }
