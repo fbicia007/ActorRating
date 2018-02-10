@@ -49,5 +49,18 @@ App({
         cb(res)
       }
     })
+  },
+  getLikeRequest: function (uuid, movieId, actorId, cb) {
+    var that = this
+    wx.request({
+      url: that.globalData.basicUrl + "/like?openId=" + uuid + '&movieId=' + movieId + '&actorId=' + actorId,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
   }
+
 })
