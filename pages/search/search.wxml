@@ -5,7 +5,7 @@
 </view>
 <scroll-view class="page-body" scroll-y="true">
   <view wx:for="{{films}}" wx:key="unique">
-    <view class='item' data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
+    <view class='item' hover-class="hover" data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
       <image class="film-photo" src="{{item.posterV}}" mode='aspectFit'></image>
       <text class='film-name'>{{item.title}}</text>
     </view>

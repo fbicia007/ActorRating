@@ -15,7 +15,7 @@
               <view class='item' data-id='{{item.id}}'>
                 <image class="actor-photo" src="{{item.photo}}" mode='aspectFit'></image>
                 <text class='actor-name'>{{item.name}} 饰演 {{item.role}}</text>
-                <view class='actor-like' bindtap='onLikeClicked' data-movie-id="{{movie.id}}" data-actor-id="{{item.id}}">
+                <view class='actor-like' hover-class="hover" bindtap='onLikeClicked' data-movie-id="{{movie.id}}" data-actor-id="{{item.id}}">
                   <image class='actor-like-image' src='../../images/like.png' mode='aspectFit'></image>
                   <text class='actor-like-count'>{{item.like}}</text>
                 </view>

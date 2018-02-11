@@ -4,13 +4,9 @@
   <input type="text" bindtap="onSearchClicked" disabled='true' placeholder="搜索"></input>
   <icon bindtap="onSearchClicked"  type="search" size="20"/>
 </view>
-<scroll-view class="">
+<scroll-view>
   <view class="film-container">
      <template is="movieThumb" wx:for-items="{{films}}"  wx:for-item="film" wx:key="id" data="{{...film}}">   
       </template> 
   </view>
-  <!-- <view class="weui-loadmore" hidden="{{!hasMore}}">
-    <view class="weui-loading"></view>
-    <view class="weui-loadmore__tips">加载更多</view>
-  </view>  -->
 </scroll-view>

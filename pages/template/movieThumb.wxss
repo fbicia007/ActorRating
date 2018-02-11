@@ -1,17 +1,23 @@
 /* pages/template/movieThumb.wxss */
 
-.film-item{
-  width:110px;
-  display:inline-block;
-  margin:0 10px 16px 10px;
-
+ .film-item{
+  width: 200rpx;
+  display: inline-block;
+  margin: 0 10rpx 32rpx 10rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .film-image{
-  width:100px;
-  height:147px;
+  width: 200rpx;
+  height: 294rpx;
   display: block;
+  padding-bottom: 16rpx;
 }
 .film-title{
   font-weight: 600;
   line-height: 1;
 }
+.hover{
+  background-color: #F0F0F0;
+} 
