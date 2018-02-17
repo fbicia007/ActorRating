@@ -15,7 +15,7 @@
 .search-container input {
   background: #FFF;
   color: #AAA;
-  padding: 5px 10rpx;
+  padding: 10rpx 20rpx;
   height: 40rpx;
   width: 100%;
   border-radius: 8rpx;
@@ -39,9 +39,10 @@
   white-space: nowrap;
   display: flex;
   background-color: #fff;
+  padding: 0rpx 10rpx 0rpx 0rpx;
 }
 .filmlist{
-  margin: 0rpx 20rpx;
+  margin: 0rpx 10rpx;
   padding-top: 16rpx;
   width: 100%; 
 }
@@ -65,7 +66,7 @@
   width: 200rpx;
   height: 294rpx;
   display: block;
-  padding-bottom: 16rpx;
+  padding-bottom: 10rpx;
 }
 .film-title{
   font-weight: 600;

@@ -15,7 +15,7 @@
 .search-container input {
   background: #fff;
   color: #aaa;
-  padding: 5px 10rpx;
+  padding: 10rpx 20rpx;
   height: 40rpx;
   width: 85%;
   border-radius: 8rpx;

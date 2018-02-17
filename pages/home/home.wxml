@@ -1,4 +1,5 @@
 <import src="../template/movieThumb.wxml" />
+ <scroll-view scroll-y="true">
 <view class="search-container">
   <input type="text" bindtap="onSearchClicked" disabled='true' placeholder="搜索"></input>
   <icon bindtap="onSearchClicked"  type="search" size="20"/>
@@ -17,3 +18,4 @@
     </view>
   </view>
 </view>
+</scroll-view>

@@ -25,13 +25,13 @@ Page({
       title: '演员评分',
     })
 
-    // loadFilms(this)
+    loadFilms(this)
 
-    if (this.data.logged) {
-      loadFilms(this)
-    } else {
-      login(this)
-    }
+    // if (this.data.logged) {
+    //   loadFilms(this)
+    // } else {
+    //   login(this)
+    // }
   },
 
   /**
