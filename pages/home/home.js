@@ -25,13 +25,13 @@ Page({
       title: '演员评分',
     })
 
-    loadFilms(this)
+    // loadFilms(this)
 
-    // if (this.data.logged) {
-    //   loadFilms(this)
-    // } else {
-    //   login(this)
-    // }
+    if (this.data.logged) {
+      loadFilms(this)
+    } else {
+      login(this)
+    }
   },
 
   /**
@@ -86,9 +86,16 @@ Page({
   onDetailClicked: function (e) {
     var data = e.currentTarget.dataset
     console.log("click id: ", data.id, " stauts: ", data.status)
-    wx.navigateTo({
-      url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
-    })
+    if (data.status == 1) {
+      wx.navigateTo({
+        url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../shootingMovieDetails/shootingMovieDetails?id=' + data.id + "&status=" + data.status,
+      })
+    }
+
   },
 
   onMoreClicked: function (e) {

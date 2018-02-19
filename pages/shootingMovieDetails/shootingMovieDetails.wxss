@@ -71,46 +71,136 @@
 
 .one-scene text {
   display: flex;
+}
+
+.movieDescription {
+  display: flex;
   justify-content: center;
   padding: 30rpx;
   line-height: 1.5;
 }
 
-.item {
-  display: flex;
-  padding: 20rpx 20rpx;
-  border-bottom: 2rpx solid #eee;
+.card {
+  background: #f6f6f6;
+  margin: 20rpx 10rpx;
+  padding: 10rpx 10rpx;
+  border-radius: 20rpx;
 }
 
-.item .actor-photo {
-  width: 100rpx;
-  height: 100rpx;
-  margin-right: 20rpx;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10rpx 0rpx 0rpx 0rpx;
+  align-items: center;
 }
 
-.item .actor-name {
-  width: 70%;
+.card-title {
+  margin: 0rpx 20rpx;
+}
+
+.more-btn {
+  border: 0px solid #fff !important;
+  color: #2aac5e !important;
+  line-height: 1;
+  margin: 0;
+}
+
+.vote-view {
+  flex-direction: row;
+  height: 150rpx;
   display: flex;
+  align-items: center;
+  margin: 20rpx 0rpx;
+}
+
+.actor {
   flex-direction: column;
 }
 
-.item .actor-like {
+.actor-photo {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.actor-name {
+  font-size: 20rpx;
+  justify-content: center;
+}
+
+.vote-progress {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0rpx 20rpx;
+}
+
+.progress {
+  width: 100%;
+}
+
+.vote {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0rpx 10rpx 0rpx 0rpx;
 }
 
-.item .actor-like-image {
+.vote-image {
   width: 64rpx;
   height: 64rpx;
   padding: 0rpx 0rpx;
 }
 
-.item .actor-like-count {
-  font-size: 30rpx;
-  padding: 0rpx 0rpx ;
+.hover {
+  background-color: #f0f0f0;
 }
-.hover{
-  background-color: #F0F0F0;
+
+/*mask*/
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+/*content*/
+
+.drawer_box {
+  width: 650rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 1001;
+  background: #fafafa;
+  margin: -150px 50rpx 0 50rpx;
+  border-radius: 3px;
+}
+
+.drawer_title {
+  padding: 20rpx;
+  font: 50rpx;
+  font-style: bold;
+  text-align: center;
+}
+
+.drawer_content {
+  height: 420rpx;
+  overflow-y: scroll;
+  padding: 10rpx 20rpx;
+  background-color: #f6f6f6;
+}
+
+.btn_ok {
+  padding: 20rpx;
+  font: 50rpx;
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  color: #42BD56;
 }

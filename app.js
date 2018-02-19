@@ -7,10 +7,11 @@ App({
     qcloud.setLoginUrl(config.service.loginUrl)
   },
   globalData: {
-    userInfo: null,
+    // userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
+    // userInfo: "",12312323133123123123213ffdf
     basicUrl: "https://xuwang.de/actorrating",
     statusList: { "0": "coming_soon", "1": "in_theaters" },
-    pageTypelist: { "coming_soon": "即将上映", "in_theaters": "正在热映" }
+    pageTypelist: { "coming_soon": "即将拍摄", "in_theaters": "正在热映" }
   },
   getFilmInfo: function (pageType, start, count, cb) {
     var that = this
@@ -25,11 +26,23 @@ App({
       }
     })
   },
-  getFilmDetail: function (pageType, id, cb) {
+  getFilmDetail: function (pageType, id, openId, cb) {
     var that = this
-    console.log("url: ", that.globalData.basicUrl + "/" + pageType + '?id=' + id)
     wx.request({
-      url: that.globalData.basicUrl + "/" + pageType + '?id=' + id,
+      url: that.globalData.basicUrl + "/" + pageType + "?openId=" + openId + '&id=' + id,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  getComingSoonFilmDetail: function (pageType, id, openId, cb) {
+    var that = this
+    console.log("url: ", that.globalData.basicUrl + "/" + pageType + ".php?openId=" + openId + '&id=' + id)
+    wx.request({
+      url: that.globalData.basicUrl + "/" + pageType + ".php?openId=" + openId + '&id=' + id,
       header: {
         "Content-Type": "json",
       },
@@ -50,10 +63,23 @@ App({
       }
     })
   },
-  getLikeRequest: function (uuid, movieId, actorId, cb) {
+  getLikeRequest: function (openId, movieId, actorId, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/like?openId=" + uuid + '&movieId=' + movieId + '&actorId=' + actorId,
+      url: that.globalData.basicUrl + "/like?openId=" + openId + '&movieId=' + movieId + '&actorId=' + actorId,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  getVoteRequest: function (openId, actorId, roleId, cb) {
+    var that = this
+    console.log("vote: ", that.globalData.basicUrl + "/coming_soon_vote.php?openId=" + openId + '&actorId=' + actorId + '&roleId=' + roleId)
+    wx.request({
+      url: that.globalData.basicUrl + "/coming_soon_vote.php?openId=" + openId + '&actorId=' + actorId + '&roleId=' + roleId,
       header: {
         "Content-Type": "json",
       },

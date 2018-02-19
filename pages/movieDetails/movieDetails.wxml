@@ -15,8 +15,14 @@
               <view class='item' data-id='{{item.id}}'>
                 <image class="actor-photo" src="{{item.photo}}" mode='aspectFit'></image>
                 <text class='actor-name'>{{item.name}} 饰演 {{item.role}}</text>
-                <view class='actor-like' hover-class="hover" bindtap='onLikeClicked' data-movie-id="{{movie.id}}" data-actor-id="{{item.id}}">
-                  <image class='actor-like-image' src='../../images/like.png' mode='aspectFit'></image>
+                <view class='actor-like' hover-class="hover" bindtap='onLikeClicked' data-movie-id="{{movie.id}}" data-actor-id="{{item.id}}" data-like-symbol="{{item.likeSymbol}}">
+                <view wx:if="{{item.likeSymbol}}">
+                  <image class='actor-like-image' src='../../images/like_active.png' mode='aspectFit'></image>  
+                </view>
+                <view wx:else>
+                  <image class='actor-like-image' src='../../images/like_normal.png' mode='aspectFit'></image>
+                </view>
+                  
                   <text class='actor-like-count'>{{item.like}}</text>
                 </view>
               </view>

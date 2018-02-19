@@ -30,12 +30,13 @@ Page({
     var id = options.id
     var status = app.globalData.statusList[options.status]
     var movies = ""
+    var openId = app.globalData.userInfo.openId
 
     wx.showLoading({
       title: '全力加载中...',
     })
 
-    app.getFilmDetail(status, id, function (res) {
+    app.getFilmDetail(status, id, openId, function (res) {
       wx.hideLoading()
       var data = res.data[0]
       console.log("data: ", data)
@@ -47,6 +48,8 @@ Page({
         movie: data,
         actors: data.actors
       })
+
+      console.log("actors: ", data.actors)
     })
 
     let { tabs } = this.data;
@@ -137,23 +140,32 @@ Page({
     var movieId = data.movieId
     var actorId = data.actorId
     var openId = app.globalData.userInfo.openId
+    var likeSymbol = data.likeSymbol
 
-    var that = this
-    app.getLikeRequest(openId, movieId, actorId, function(res) {
-      var data = res.data[0]
-      if (!data.duplicate) {
-        var actors = that.data.actors
-        for (let i = 0; i < actors.length; i++) {
-          var actor = actors[i]
-          if (actor.id == actorId) {
-            actor.like = data.like
+    if (!likeSymbol) {
+      wx.showLoading({
+        title: '正在点赞...',
+      })
+
+      var that = this
+      app.getLikeRequest(openId, movieId, actorId, function (res) {
+        wx.hideLoading()
+        var data = res.data[0]
+        if (!data.duplicate) {
+          var actors = that.data.actors
+          for (let i = 0; i < actors.length; i++) {
+            var actor = actors[i]
+            if (actor.id == actorId) {
+              actor.like = data.like
+              actor.likeSymbol = true
+            }
           }
+          that.setData({
+            actors: actors
+          })
         }
-        that.setData({
-          actors: actors
-        })
-      }
-      
-    })
+
+      })
+    }
   }
 })

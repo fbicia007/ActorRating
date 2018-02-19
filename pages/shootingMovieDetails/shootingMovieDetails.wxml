@@ -1,0 +1,63 @@
+<view class="stv-container">
+  <view class="tab-bar">
+    <view wx:for="{{tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
+      <text class='page-text'>{{item}}</text>
+    </view>
+    <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
+  </view>
+  <view class="scroll-view">
+    <view class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
+      <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" class="one-scene">
+        <scroll-view style="height:{{stv.pageHeight}}px" scroll-y>
+          <view hidden='{{activeTab == 0}}'>
+            <view class="card" wx:for="{{roles}}" wx:for-item="roles" wx:key="unique">
+              <view class="card-header" scroll-x="false">
+                <text class='card-title'>{{roles.name}}</text>
+                <button class="more-btn" hover-class="hover" bindtap="onDescriptionClicked" data-statu="open" data-role-name='{{roles.name}}' data-role-description='{{roles.description}}' plain="false">角色介绍</button>
+              </view>
+              <view class='vote-view' wx:for="{{roles.actors}}" wx:for-item="actors" wx:key="unique">
+                <view class='actor'>
+                  <image class='actor-photo' src="{{actors.photo}}" mode='aspectFit'></image>
+                  <text class='actor-name'>{{actors.name}}</text>
+                </view>
+                <view class='vote-progress'>
+                  <view class='progress'>
+                    <progress percent="{{actors.vote}}" stroke-width='12' show-info activeColor/>
+                  </view>
+                </view>
+                <view class='vote' hover-class="hover" bindtap='onVoteClicked' data-actor-id="{{actors.id}}" data-role-id='{{roles.id}}' data-vote-symbol='{{actors.voteSymbol}}'>
+                <view wx:if="{{actors.voteSymbol}}">
+                  <image class='vote-image' src='../../images/vote_active.png' mode='aspectFit'></image> 
+                </view>
+                <view wx:else>
+                  <image class='vote-image' src='../../images/vote_normal.png' mode='aspectFit'></image>
+                </view>
+                  <text class='actor-name'>我要投票</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view hidden='{{activeTab == 1}}'>
+            <view class='movieDescription'>
+              <text>{{movie.description}}</text>
+            </view>
+
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <!--mask-->  
+<view class="drawer_screen" bindtap="onCloseClicked" data-statu="close" wx:if="{{showModalStatus}}"></view>  
+<!--content-->  
+<!--使用animation属性指定需要执行的动画-->  
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
+  
+  <!--drawer content-->  
+  <view class="drawer_title">{{roleName}}</view>  
+  <view class="drawer_content">  
+    <text>{{roleDescription}}</text>
+  </view>  
+  <view class="btn_ok" bindtap="onCloseClicked" data-statu="close">确定</view>  
+</view> 
+</view>
