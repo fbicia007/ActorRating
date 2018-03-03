@@ -192,48 +192,30 @@ Page({
     var openId = app.globalData.userInfo.openId
     var voteSymbol = data.voteSymbol
 
-    if (!voteSymbol) {
+    if (voteSymbol) {
+      wx.showLoading({
+        title: '正在取消...',
+      })
+    } else {
       wx.showLoading({
         title: '正在投票...',
       })
-
-      var that = this
-      app.getVoteRequest(openId, actorId, roleId, function (res) {
-        var data = res.data[0]
-        if (!data.duplicate) {
-          // var roles = that.data.roles
-          // for (let i = 0; i < roles.length; i++) {
-          //   if (roles[i].id == roleId) {
-          //     var actors = roles[i].actors
-          //     for (let j = 0; j < actors.length; j++) {
-          //       var actor = actors[j]
-          //       if (actor.id == actorId) {
-          //         actor.vote = data.vote
-          //         console.log("vote: ", actor.vote)
-          //         actor.voteSymbol = true
-          //       }
-          //     }
-          //   }
-          // }
-          // that.setData({
-          //   roles: roles
-
-          // })
-
-          // console.log("roles: ", roles)
-          var id = that.data.options.id
-          var status = app.globalData.statusList[that.data.options.status]
-          var openId = app.globalData.userInfo.openId
-          app.getComingSoonFilmDetail(status, id, openId, function (res) {
-            wx.hideLoading()
-            var data = res.data[0]
-            that.setData({
-              roles: data.roles
-            })
-          })
-        }
-
-      })
     }
+
+    var that = this
+    app.getVoteRequest(openId, actorId, roleId, function (res) {
+      var data = res.data[0]
+      console.log("data: ", data)
+      var id = that.data.options.id
+      var status = app.globalData.statusList[that.data.options.status]
+      var openId = app.globalData.userInfo.openId
+      app.getComingSoonFilmDetail(status, id, openId, function (res) {
+        wx.hideLoading()
+        var data = res.data[0]
+        that.setData({
+          roles: data.roles
+        })
+      })
+    })
   }
 })

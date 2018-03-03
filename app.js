@@ -7,8 +7,8 @@ App({
     qcloud.setLoginUrl(config.service.loginUrl)
   },
   globalData: {
-    // userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
-    // userInfo: "",12312323133123123123213ffdf
+    userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
+    // userInfo: "",
     basicUrl: "https://xuwang.de/actorrating",
     statusList: { "0": "coming_soon", "1": "in_theaters" },
     pageTypelist: { "coming_soon": "即将拍摄", "in_theaters": "正在热映" }

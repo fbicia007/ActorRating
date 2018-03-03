@@ -142,30 +142,31 @@ Page({
     var openId = app.globalData.userInfo.openId
     var likeSymbol = data.likeSymbol
 
-    if (!likeSymbol) {
+    if (likeSymbol) {
+      wx.showLoading({
+        title: '正在取消...',
+      })
+    } else {
       wx.showLoading({
         title: '正在点赞...',
       })
-
-      var that = this
-      app.getLikeRequest(openId, movieId, actorId, function (res) {
-        wx.hideLoading()
-        var data = res.data[0]
-        if (!data.duplicate) {
-          var actors = that.data.actors
-          for (let i = 0; i < actors.length; i++) {
-            var actor = actors[i]
-            if (actor.id == actorId) {
-              actor.like = data.like
-              actor.likeSymbol = true
-            }
-          }
-          that.setData({
-            actors: actors
-          })
-        }
-
-      })
     }
+
+    var that = this
+    app.getLikeRequest(openId, movieId, actorId, function (res) {
+      wx.hideLoading()
+      var data = res.data[0]
+      var actors = that.data.actors
+      for (let i = 0; i < actors.length; i++) {
+        var actor = actors[i]
+        if (actor.id == actorId) {
+          actor.like = data.like
+          actor.likeSymbol = data.likeSymbol
+        }
+      }
+      that.setData({
+        actors: actors
+      })
+    })
   }
 })
