@@ -8,7 +8,8 @@
     "pages/me/me",
     "pages/shootingMovieDetails/shootingMovieDetails",
     "pages/actorList/actorList",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
