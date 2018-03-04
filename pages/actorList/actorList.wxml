@@ -1,4 +1,4 @@
-<!--pages/search/search.wxml-->
+<!--pages/actorList/actorList.wxml-->
 <view class="search-container">
   <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='{{focus}}'></input>
   <text bindtap='onClearClicked'>取消</text>

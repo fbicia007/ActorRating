@@ -1,0 +1,25 @@
+<!--pages/comment/comment.wxml-->
+<scroll-view scroll-y="true">
+  <view class="header">
+    <view class='rating-title-view'>
+      <text class="rating-title">{{rating * 2}}</text>
+      <text class='rating-title-label'>分</text>
+    </view>
+  </view>
+
+  <view class='star-view'>
+    <block wx:for="{{stars}}" wx:key="item.id">
+      <image class="star-image" style="left: {{item*100}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{rating > item ?(rating-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+        <view class="item" style="left:0rpx" data-rating="{{item+0.5}}" bindtap="selectLeft"></view>
+        <view class="item" style="left:50rpx" data-rating="{{item+1}}" bindtap="selectRight"></view>
+      </image>
+    </block>
+  </view>
+
+  <view class="input-view">
+    <form bindsubmit="bindFormSubmit">
+      <textarea class="input-area" name="comment" placeholder="可输入140字" maxlength="140" value="{{comment}}" bindinput="textareaBindInput"></textarea>
+      <button class='btn-submit' type="primary" form-type="submit" disabled="{{buttonDisabled}}">提交</button>
+    </form>
+  </view>
+</scroll-view>

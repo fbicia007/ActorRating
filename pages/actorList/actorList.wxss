@@ -1,0 +1,49 @@
+.search-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #42bd56;
+  color: #aaa;
+  height: 80rpx;
+  padding: 10rpx 20rpx;
+  z-index: 100;
+}
+
+.search-container input {
+  background: #fff;
+  color: #aaa;
+  padding: 10rpx 20rpx;
+  height: 40rpx;
+  width: 85%;
+  border-radius: 8rpx;
+}
+
+.search-container text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 20rpx;
+  color: #fff;
+}
+
+.item {
+  display: flex;
+  padding: 10rpx 10rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.item .film-photo {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.item .film-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hover{
+  background-color: #F2F2F2;
+}

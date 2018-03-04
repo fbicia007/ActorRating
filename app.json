@@ -1,15 +1,37 @@
 {
   "pages": [
+    "pages/actorDetails/actorDetails",
     "pages/home/home",
     "pages/movieDetails/movieDetails",
-    "pages/list/list",
+    "pages/movieList/movieList",
     "pages/search/search",
     "pages/me/me",
-    "pages/shootingMovieDetails/shootingMovieDetails"
+    "pages/shootingMovieDetails/shootingMovieDetails",
+    "pages/actorList/actorList",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#42BD56",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#42BD56",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/movie_selected.png",
+        "iconPath": "images/movie_unselected.png",
+        "pagePath": "pages/home/home",
+        "text": "电影"
+      },
+      {
+        "selectedIconPath": "images/actor_selected.png",
+        "iconPath": "images/actor_unselected.png",
+        "pagePath": "pages/actorList/actorList",
+        "text": "演员"
+      }
+    ]
   }
 }

@@ -102,7 +102,7 @@ Page({
     var temp = e.currentTarget.dataset;
     console.log("tmp: ", temp.type)
     wx.navigateTo({
-      url: '../list/list?type=' + temp.type
+      url: '../movieList/movieList?type=' + temp.type
     })
   },
 

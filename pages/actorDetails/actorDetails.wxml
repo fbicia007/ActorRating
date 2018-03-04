@@ -1,0 +1,86 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="header-bg" src="{{actorImage}}"></image>
+    <view class="header-left">
+      <image src="{{actorImage}}"></image>
+      <view></view>
+    </view>
+    <view class="header-right">
+      <view>
+        <text class="header-right-name-label mb4">姓名：</text>
+        <text class="header-right-name mb4">{{name}}</text>
+      </view>
+      <view>
+        <text class="header-right-other-label mb4">生日：</text>
+        <text class="header-right-other mb4">{{birthday}}</text>
+      </view>
+      <view>
+        <text class="header-right-other-label mb4">星座：</text>
+        <text class="header-right-other mb4">{{constellation}}</text>
+      </view>
+      <view>
+        <text class="header-right-other-label mb4">出生地：</text>
+        <text class="header-right-other mb4">{{birthplace}}</text>
+      </view>
+      <view>
+        <text class="header-right-other-label mb4">职业：</text>
+        <text class="header-right-other mb4">{{profession}}</text>
+      </view>
+    </view>
+    <view class="header-button">
+      <view class="header-button-left">
+        <text class='header-button-text'>⭐ 评分</text></view>
+      <view class="header-button-right"> 
+        <text class='header-button-text'>📝 评论</text></view>
+    </view>
+  </view>
+
+  <view class="container-desc">
+    <text class="banner-title">影人简介</text>
+    <text class="container-desc-text" style="{{hideText?'-webkit-line-clamp:3':''}}">{{actorDescription}}</text>
+    <image class="{{hideClass}}" wx:if="'up=={{hideClass}}'?'':'down'" bindtap="showall" src="../../images/arrow_down.png" />
+  </view>
+
+  <!-- <view class="banner">
+    <text class="banner-title">影人图片</text>
+    <scroll-view scroll-x="true" class="banner-contain">
+      <view class="banner-contain-cinema" wx:for="{{items0}}" wx:for-item="item">
+        <image src="{{item.image}}"></image>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="banner">
+    <text class="banner-title">最近的作品</text>
+    <scroll-view scroll-x="true" class="banner-contain">
+      <view class="banner-contain-cinema" wx:for="{{items1}}" wx:for-item="item">
+        <image src="{{item.image}}"></image>
+        <text class="cinema-name">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view> -->
+
+  <view class="banner">
+    <view class="banner-content">
+      <view class="banner-title">
+        粉丝评论
+        <view class="banner-contain-btn">
+          <text class="banner-contain-inner">我要评论</text>
+        </view>
+      </view>
+      <view class="banner-contain-comment" wx:for="{{item2}}" wx:for-item="item">
+        <view class="comment-avatar">
+          <image src="{{item.avatarurl}}"></image>
+        </view>
+        <view class="comment-bd">
+          <text class="comment-id">{{item.nickName}}</text>
+          <view class="comment-inner">{{item.comment}}</view>
+          <view class="comment-date">{{item.time}}</view>
+          <view class='comment-divide'></view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

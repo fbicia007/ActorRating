@@ -1,4 +1,3 @@
-// pages/list/list.js
 var app = getApp()
 Page({
 
