@@ -15,7 +15,7 @@
 
 .header {
   width: 100%;
-  height: 220px;
+  height: 280px;
   position: relative;
   overflow: hidden;
 }
@@ -228,6 +228,47 @@
   width: 30rpx;
   height: 30rpx;
   src: "../../images/normal.png";
+}
+
+.vote-view {
+  position: static;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  background-color: red;
+}
+
+.vote-view-background {
+  flex: 1;
+  border-radius: 3px;
+  border: 1px solid #8d8e98;
+  background: #868891;
+  margin: 80rpx 40rpx 30rpx 40rpx;
+}
+
+.vote-view-inner {
+  color: #fff;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10rpx
+}
+
+.vote-text {
+  position: relative; 
+  font-size: 24rpx;
+}
+
+.vote-progress {
+  position: relative; 
+  margin: 0 10rpx;
+  width: 70%;
+}
+
+.progress {
+  width: 100%;
 }
 
 .header-button {

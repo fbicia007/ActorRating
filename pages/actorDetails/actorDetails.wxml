@@ -50,6 +50,40 @@
         <text class='header-button-text'>📝 评论</text>
       </view>
     </view> -->
+
+    <view class='vote-view'>
+      <view class='vote-view-background'>
+        <view class='vote-view-inner'>
+          <text class='vote-text'>9-10分</text>
+          <view class='vote-progress'>
+            <view class='progress'>
+              <progress percent="90" stroke-width='2' activeColor/>
+            </view>
+          </view>
+          <text class='vote-text'>90%</text>
+        </view>
+
+        <view class='vote-view-inner'>
+          <text class='vote-text'>5-8分</text>
+          <view class='vote-progress'>
+            <view class='progress'>
+              <progress percent="19" stroke-width='2' activeColor/>
+            </view>
+          </view>
+          <text class='vote-text'>19%</text>
+        </view>
+
+        <view class='vote-view-inner'>
+          <text class='vote-text'>1-4分</text>
+          <view class='vote-progress'>
+            <view class='progress'>
+              <progress percent="9" stroke-width='2' activeColor/>
+            </view>
+          </view>
+          <text class='vote-text'>9%</text>
+        </view>
+      </view>
+    </view>
   </view>
 
   <view class="container-desc">
