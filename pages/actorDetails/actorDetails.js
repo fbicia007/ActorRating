@@ -7,6 +7,12 @@ Page({
   data: {
     hideText: true,
     hideClass: 'up',
+    showRating: true,
+    stars: [0, 1, 2, 3, 4],
+    rating: 7,
+    normalSrc: '../../images/rating_empty.png',
+    selectedSrc: '../../images/rating_full.png',
+    halfSrc: '../../images/rating_half.png',
     actorImage: "https://xuwang.de/actorrating/images/actors/dengchao.jpeg",
     actorDescription: "一辆宝马牌摩托车在南京机场高速公路上急速行驶，频繁变道超车。其最高速度开到299公里每小时，犹如高铁速度，以至于其影像资料在瞬间变得扭曲。近日，一段时长1分2秒的摩托车手飙车视频在社交平台引发热议。有网友评论称，“太危险了”，速度都快赶上高铁了，看得心惊胆战。甚至有人说，这样的速度跟任何车辆碰擦都是致命的，对于这种“拿生命当儿戏”的行为应该严肃查处。对此，3月1日中午，南京市公安局交通管理局官方微博 @南京交警 对外发布通报称，3月1日上午10时30分，南京交警高速五大队办案民警将违法犯罪嫌疑人史某（1994年生，无业）抓获。警方认为，史某驾驶摩托车在南京机场高速上高速竞驶，涉嫌危险驾驶。",
     name: "邓超",
@@ -165,6 +171,13 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  onCommentClicked: function () {
+    wx.navigateTo({
+      url: '../comment/comment',
+    })
+  },
+
   showall: function () {
     var that = this;
     var hide = that.data.hideText;
@@ -174,22 +187,6 @@ Page({
       hideClass: hideClass
     })
   },
-  zan: function (e) {
-    let a = e.target.dataset.num
-    let x = e.target.dataset.zan
-    let c = this.data.comments
-    if (x == 1) {
-      x = 0;
-    } else {
-      x = 1;
-    }
-    c[a].zan = x;
-    // console.log(a)
-    // console.log(x)
-    // console.log(c)
-    // console.log(c.zan)
-    this.setData({
-      comments: c
-    })
-  }
+  
+  
 })

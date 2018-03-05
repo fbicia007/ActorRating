@@ -27,13 +27,29 @@
         <text class="header-right-other-label mb4">职业：</text>
         <text class="header-right-other mb4">{{profession}}</text>
       </view>
+      <view wx:if="{{showRating}}">
+        <view class='rating'>
+          <block wx:for="{{stars}}" wx:key="item.id">
+            <image class="star-image" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(rating/2) > item ?((rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+            </image>
+          </block>
+          <text class="header-right-other mb4 mb5">{{rating}}分</text>
+        </view>
+      </view>
+      <view wx:else>
+        <view>
+          <text class="header-right-other mb4">未达到最少评分条件</text>
+        </view>
+      </view>
     </view>
-    <view class="header-button">
-      <view class="header-button-left">
-        <text class='header-button-text'>⭐ 评分</text></view>
-      <view class="header-button-right"> 
-        <text class='header-button-text'>📝 评论</text></view>
-    </view>
+    <!-- <view class="header-button">
+      <view bindtap="onCommentClicked">
+        <text class='header-button-text'>⭐ 评分</text>
+      </view>
+      <view bindtap="onCommentClicked">
+        <text class='header-button-text'>📝 评论</text>
+      </view>
+    </view> -->
   </view>
 
   <view class="container-desc">
@@ -65,21 +81,22 @@
     <view class="banner-content">
       <view class="banner-title">
         粉丝评论
-        <view class="banner-contain-btn">
+        <view class="banner-contain-btn" bindtap='onCommentClicked'>
           <text class="banner-contain-inner">我要评论</text>
         </view>
       </view>
-      <view class="banner-contain-comment" wx:for="{{item2}}" wx:for-item="item">
+      <view class="comment-view" wx:for="{{item2}}" wx:for-item="item">
         <view class="comment-avatar">
-          <image src="{{item.avatarurl}}"></image>
+          <image class="icon" src="{{item.avatarurl}}"></image>
         </view>
-        <view class="comment-bd">
-          <text class="comment-id">{{item.nickName}}</text>
-          <view class="comment-inner">{{item.comment}}</view>
+        <view class="comment">
+          <text class="comment-name">{{item.nickName}}</text>
+          <view class="comment-content">{{item.comment}}</view>
           <view class="comment-date">{{item.time}}</view>
-          <view class='comment-divide'></view>
         </view>
       </view>
+
+
     </view>
 
   </view>

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+ <view class="container">
     <view class="header">
         <image class="header-bg" src="{{imgsrc}}"></image>
         <view class="header_left">
@@ -17,7 +17,6 @@
                 </view>
             </view>
             <view class="header_right-ft">
-                <!--<view class="font-desc flex"><view class="cinema-type">{{cat}}</view><view class="cinema-ways"><text class="cinema-3d" wx:if="{{threeD}}">3D</text><text class="cinema-imax" wx:if="{{imax}}">IMAX</text></view></view>-->
                 <view class="font-desc"><text class="cinema-src font-desc">{{country}}/{{duration}}分钟</text></view>
                 <view class="font-desc"><text class="cinema-date font-desc">{{showing}}</text></view>
             </view>
@@ -96,4 +95,4 @@
         </view>
 
     </view>
-</view>
+</view> 
