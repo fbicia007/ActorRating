@@ -15,7 +15,6 @@
 
 .header {
   width: 100%;
-  height: 280px;
   position: relative;
   overflow: hidden;
 }
@@ -37,11 +36,11 @@
 
 .header-left {
   z-index: 1;
-  width: 110px;
-  height: 150px;
+  width: 240rpx;
+  height: 340rpx;
   position: relative;
-  margin-left: 15px;
-  margin-top: 12px;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
   border: 1px solid #d7d8d9;
   float: left;
   text-align: center;
@@ -55,73 +54,150 @@
 
 .header-right {
   position: relative;
-  height: 150px;
-  margin-left: 15px;
-  margin-top: 8px;
+  height: 340rpx;
+  margin-left: 30rpx;
   float: left;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  justify-content: center;
 }
 
 .header-right-name-label {
   display: inline-block;
   color: lightgray;
-  margin-top: 8px;
-  font-size: 16px;
+  margin-top: 16rpx;
+  font-size: 36rpx;
 }
 
 .header-right-name {
   display: inline-block;
   color: #fff;
-  margin-top: 8px;
-  font-size: 16px;
+  margin-top: 16rpx;
+  font-size: 36rpx;
 }
 
 .header-right-other-label {
   display: inline-block;
   color: lightgray;
-  font-size: 12px;
+  font-size: 30rpx;
 }
 
 .header-right-other {
   display: inline-block;
   color: #fff;
-  font-size: 12px;
+  font-size: 30rpx;
 }
 
-.bd-tips {
-  border-top: 1px solid #d8d8d8;
+/* .rating {
+  margin: 10rpx 0;
+}
+
+.star-image {
+  width: 30rpx;
+  height: 30rpx;
+  src: "../../images/normal.png";
+} */
+
+.vote-view {
+  position: static;
   width: 100%;
-  height: 39px;
-  background: #fff;
+  height: 150rpx;
+  flex-direction: row;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.vote-view-background {
+  width: 70%;
+  border-radius: 3px;
+  border: 1px solid #8d8e98;
+  background: #868891;
+  margin: 20rpx 5rpx 20rpx 20rpx;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vote-view-inner {
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10rpx;
+}
+
+.vote-text {
   position: relative;
-  margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 39px;
-  text-align: center;
-  border-bottom: 1px solid #d8d8d8;
+  font-size: 20rpx;
+}
+
+.vote-progress {
+  position: relative;
+  margin: 0 10rpx;
+  width: 70%;
+}
+
+.progress {
+  width: 100%;
+}
+
+.vote-star-background {
+  width: 30%;
+  border-radius: 3px;
+  border: 1px solid #8d8e98;
+  background: #868891;
+  margin: 20rpx 20rpx 20rpx 5rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vote-start-label {
+  position: relative;
+  color: #fff;
+  font-size: 26rpx;
+  margin: 0 20rpx;
+}
+
+.vote-start-view {
+  position: relative;
+  margin: 0 20rpx;
+}
+
+.vote-start {
+  width: 20rpx;
+  height: 20rpx;
+  src: "../../images/normal.png";
+}
+
+.vote-start-text {
+  position: relative;
+  color: #fff;
+  font-size: 20rpx;
+  margin: 0 20rpx 0 10rpx;
 }
 
 .container-desc {
   width: 100%;
-  border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #d8d8d8;
+  border-top: 2rpx solid #eaeaea;
+  border-bottom: 2rpx solid #d8d8d8;
   background: #fff;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 20rpx;
 }
 
 .container-desc .banner-title {
   margin: 0 auto;
-  padding: 0 0 0 15px;
+  padding: 0 0 0 30rpx;
   width: 100%;
-  font-size: 14px;
+  font-size: 28rpx;
   color: #000;
   float: left;
-  line-height: 36px;
+  line-height: 72rpx;
   font-weight: bold;
 }
 
@@ -129,8 +205,8 @@
   display: block;
   width: 90%;
   margin: 0 auto;
-  font-size: 15px;
-  padding: 0 15px 0 15px;
+  font-size: 32rpx;
+  padding: 0 30rpx 0 30rpx;
   overflow: hidden;
   line-height: 1.5;
   -webkit-box-orient: vertical;
@@ -139,8 +215,8 @@
 }
 
 .container-desc image {
-  width: 25px;
-  height: 25px;
+  width: 50rpx;
+  height: 50rpx;
 }
 
 .down {
@@ -150,9 +226,9 @@
 .banner {
   width: 100%;
   background: #fff;
-  border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #d8d8d8;
-  margin-bottom: 10px;
+  border-top: 2rpx solid #eaeaea;
+  border-bottom: 2rpx solid #d8d8d8;
+  margin-bottom: 20rpx;
 }
 
 .banner-content {
@@ -161,12 +237,12 @@
 }
 
 .banner .banner-title {
-  margin-left: 15px;
+  margin-left: 30rpx;
   width: 100%;
-  font-size: 14px;
+  font-size: 28rpx;
   color: #000;
   float: left;
-  line-height: 36px;
+  line-height: 72rpx;
   font-weight: bold;
 }
 
@@ -176,7 +252,7 @@
   display: flex;
 }
 
-.banner-contain .banner-contain-cinema {
+/* .banner-contain .banner-contain-cinema {
   width: 85px;
   margin-left: 15px;
   position: relative;
@@ -202,76 +278,25 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
-}
+} */
 
 .banner-contain-btn {
   float: right;
-  margin-right: 20px;
+  margin-right: 40rpx;
 }
 
 .banner-contain-inner {
-  font-size: 10px;
+  font-size: 22rpx;
   color: #ef2438;
-  border-radius: 10px;
+  border-radius: 20rpx;
   background: #fff;
-  border: 1px solid #ef2438;
+  border: 2rpx solid #ef2438;
   text-align: center;
-  padding: 4px;
-  margin-right: 10px;
+  padding: 8rpx;
+  margin-right: 20rpx;
 }
 
-.rating {
-  margin: 10rpx 0
-}
-
-.star-image {
-  width: 30rpx;
-  height: 30rpx;
-  src: "../../images/normal.png";
-}
-
-.vote-view {
-  position: static;
-  width: 100%;
-  flex-direction: column;
-  display: flex;
-  background-color: red;
-}
-
-.vote-view-background {
-  flex: 1;
-  border-radius: 3px;
-  border: 1px solid #8d8e98;
-  background: #868891;
-  margin: 80rpx 40rpx 30rpx 40rpx;
-}
-
-.vote-view-inner {
-  color: #fff;
-  font-size: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10rpx
-}
-
-.vote-text {
-  position: relative; 
-  font-size: 24rpx;
-}
-
-.vote-progress {
-  position: relative; 
-  margin: 0 10rpx;
-  width: 70%;
-}
-
-.progress {
-  width: 100%;
-}
-
-.header-button {
+/* .header-button {
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -292,9 +317,8 @@
 }
 
 .header-button-text {
-  
-   position: relative; 
-}
+  position: relative;
+} */
 
 .comment-view {
   display: flex;
@@ -318,26 +342,26 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
 }
 
 .comment-name {
   color: #000;
-  font-size: 12px;
-  line-height: 10px;
+  font-size: 24rpx;
+  line-height: 20rpx;
 }
 
 .comment-content {
   margin-top: 20rpx;
   color: #000;
-  font-size: 14px;
+  font-size: 28rpx;
   line-height: 1.5;
 }
 
 .comment-date {
   margin-top: 8rpx;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #666;
 }

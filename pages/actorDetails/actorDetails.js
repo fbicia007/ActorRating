@@ -5,9 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    headerHeight: "",
     hideText: true,
     hideClass: 'up',
-    showRating: true,
+    showRating: false,
     stars: [0, 1, 2, 3, 4],
     rating: 7,
     normalSrc: '../../images/rating_empty.png',
@@ -97,6 +98,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (this.data.showRating) {
+      this.setData({
+        headerHeight: 520
+      })
+    } else {
+      this.setData({
+        headerHeight: 380
+      })
+    }
+
     var that = this
     wx.login({
       success: function (res) {

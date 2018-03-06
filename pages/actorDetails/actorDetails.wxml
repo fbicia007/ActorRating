@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="header">
+  <view class="header" style='height: {{headerHeight}}rpx'>
     <image class="header-bg" src="{{actorImage}}"></image>
     <view class="header-left">
       <image src="{{actorImage}}"></image>
@@ -27,7 +27,7 @@
         <text class="header-right-other-label mb4">职业：</text>
         <text class="header-right-other mb4">{{profession}}</text>
       </view>
-      <view wx:if="{{showRating}}">
+      <!-- <view wx:if="{{showRating}}">
         <view class='rating'>
           <block wx:for="{{stars}}" wx:key="item.id">
             <image class="star-image" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(rating/2) > item ?((rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
@@ -40,7 +40,7 @@
         <view>
           <text class="header-right-other mb4">未达到最少评分条件</text>
         </view>
-      </view>
+      </view> -->
     </view>
     <!-- <view class="header-button">
       <view bindtap="onCommentClicked">
@@ -50,6 +50,7 @@
         <text class='header-button-text'>📝 评论</text>
       </view>
     </view> -->
+    <view wx:if="{{showRating}}">
 
     <view class='vote-view'>
       <view class='vote-view-background'>
@@ -83,7 +84,24 @@
           <text class='vote-text'>9%</text>
         </view>
       </view>
+
+      <view class='vote-star-background'>
+        <text class="vote-start-label">评分</text>
+        <view class='vote-start-view'>
+          <block wx:for="{{stars}}" wx:key="item.id">
+            <image class="vote-start" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(rating/2) > item ?((rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+            </image>
+          </block>
+          <text class="vote-start-text">{{rating}}分</text>
+        </view>
+      </view>
+
     </view>
+    
+    </view>
+
+
+
   </view>
 
   <view class="container-desc">
