@@ -6,6 +6,8 @@ Page({
    */
   data: {
     headerHeight: "",
+    commentTitle: "",
+    commented: false,
     hideText: true,
     hideClass: 'up',
     showRating: false,
@@ -105,6 +107,16 @@ Page({
     } else {
       this.setData({
         headerHeight: 380
+      })
+    }
+
+    if (this.data.commented) {
+      this.setData({
+        commentTitle: "我的评论"
+      })
+    } else {
+      this.setData({
+        commentTitle: "我要评论"
       })
     }
 

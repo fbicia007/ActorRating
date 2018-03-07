@@ -134,7 +134,7 @@
       <view class="banner-title">
         粉丝评论
         <view class="banner-contain-btn" bindtap='onCommentClicked'>
-          <text class="banner-contain-inner">我要评论</text>
+          <text class="banner-contain-inner">{{commentTitle}}</text>
         </view>
       </view>
       <view class="comment-view" wx:for="{{item2}}" wx:for-item="item">

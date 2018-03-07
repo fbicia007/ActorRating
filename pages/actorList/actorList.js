@@ -116,7 +116,7 @@ Page({
     console.log("data: ", data)
     console.log("click id: ", data.id, " stauts: ", data.status)
     wx.navigateTo({
-      url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
+      url: '../actorDetails/actorDetails',
     })
   }
 })
