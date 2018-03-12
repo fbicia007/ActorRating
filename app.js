@@ -9,6 +9,7 @@ App({
   globalData: {
     userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
     // userInfo: "",
+    reloadActorDetail: false,
     basicUrl: "https://xuwang.de/actorrating",
     statusList: { "0": "coming_soon", "1": "in_theaters" },
     pageTypelist: { "coming_soon": "即将拍摄", "in_theaters": "正在热映" }
@@ -54,7 +55,7 @@ App({
   getSearchRequest: function (text, start, count, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/search?srch_text=" + text + '&start=' + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/search?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },
@@ -80,6 +81,54 @@ App({
     console.log("vote: ", that.globalData.basicUrl + "/coming_soon_vote.php?openId=" + openId + '&actorId=' + actorId + '&roleId=' + roleId)
     wx.request({
       url: that.globalData.basicUrl + "/coming_soon_vote.php?openId=" + openId + '&actorId=' + actorId + '&roleId=' + roleId,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  getActors: function (text, start, count, cb) {
+    var that = this
+    wx.request({
+      url: that.globalData.basicUrl + "/actors?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  getActorDetail: function (id, cb) {
+    var that = this
+    wx.request({
+      url: that.globalData.basicUrl + "/actors?id=" + id,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  getMyComment: function (openId, actorId, cb) {
+    var that = this
+    wx.request({
+      url: that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  doComment: function (openId, actorId, rating, comment, cb) {
+    var that = this
+    wx.request({
+      url: that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId + '&rating=' + rating + '&comment=' + comment,
       header: {
         "Content-Type": "json",
       },

@@ -1,4 +1,5 @@
-// pages/comment/comment.js
+var app = getApp()
+
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
     ratingMarginLeft: "",
     textLength: 0,
     buttonDisabled: true,
-    comment: ""
+    actorId: "",
+    contents: ""
   },
 
   /**
@@ -24,6 +26,34 @@ Page({
       this.setData({
         ratingMarginLeft: (windowWidth - 5 * 50) / 2
       })
+      app.globalData.reloadActorDetail = false
+
+      var that = this
+      var actorId = options.actorId
+      var commented = options.commented
+      var openId = app.globalData.userInfo.openId
+
+      this.setData({
+        actorId: actorId
+      })
+
+      if (commented) {
+        wx.showLoading({
+          title: '全力加载中...',
+        })
+        app.getMyComment(openId, actorId, function (res) {
+          wx.hideLoading()
+
+          var data = res.data[0]
+          console.log("contents: ", data)
+          that.setData({
+            contents: data,
+            rating: data.rating / 2,
+            buttonDisabled: false
+          })
+
+        }) 
+      }
   },
 
   /**
@@ -103,19 +133,31 @@ Page({
 
   bindFormSubmit: function (e) {
     var value = e.detail.value;
-    console.log("test: ", value.comment)
 
-    // wx.navigateBack({
-    //   url: '../index/index',
-    //   success: function (res) {
-    //     // success
-    //   },
-    //   fail: function () {
-    //     // fail
-    //   },
-    //   complete: function () {
-    //     // complete
-    //   }
-    // })
+    var that = this
+    var actorId = this.data.actorId
+    var openId = app.globalData.userInfo.openId
+    var rating = this.data.rating * 2
+    wx.showLoading({
+      title: '正在评论...',
+    })
+    
+    app.doComment(openId, actorId, rating, value.comment, function(res) {
+      wx.hideLoading()
+      app.globalData.reloadActorDetail = true
+      wx.showToast({
+        title: '评论成功',
+        icon: 'success',
+        duration: 2000
+      })
+
+      setTimeout(function () {
+        wx.navigateBack({
+          url: '../actorDetails/actorDetails'
+        })
+      }, 2000)
+    })
+
+
   }
 })

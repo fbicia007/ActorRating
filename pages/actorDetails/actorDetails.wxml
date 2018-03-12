@@ -1,31 +1,31 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header" style='height: {{headerHeight}}rpx'>
-    <image class="header-bg" src="{{actorImage}}"></image>
+    <image class="header-bg" src="{{actor.photo}}"></image>
     <view class="header-left">
-      <image src="{{actorImage}}"></image>
+      <image src="{{actor.photo}}"></image>
       <view></view>
     </view>
     <view class="header-right">
       <view>
         <text class="header-right-name-label mb4">姓名：</text>
-        <text class="header-right-name mb4">{{name}}</text>
+        <text class="header-right-name mb4">{{actor.name}}</text>
       </view>
       <view>
         <text class="header-right-other-label mb4">生日：</text>
-        <text class="header-right-other mb4">{{birthday}}</text>
+        <text class="header-right-other mb4">{{actor.birthday}}</text>
       </view>
       <view>
         <text class="header-right-other-label mb4">星座：</text>
-        <text class="header-right-other mb4">{{constellation}}</text>
+        <text class="header-right-other mb4">{{actor.constellation}}</text>
       </view>
       <view>
         <text class="header-right-other-label mb4">出生地：</text>
-        <text class="header-right-other mb4">{{birthplace}}</text>
+        <text class="header-right-other mb4">{{actor.birthplace}}</text>
       </view>
       <view>
         <text class="header-right-other-label mb4">职业：</text>
-        <text class="header-right-other mb4">{{profession}}</text>
+        <text class="header-right-other mb4">{{actor.profession}}</text>
       </view>
       <!-- <view wx:if="{{showRating}}">
         <view class='rating'>
@@ -58,30 +58,30 @@
           <text class='vote-text'>9-10分</text>
           <view class='vote-progress'>
             <view class='progress'>
-              <progress percent="90" stroke-width='2' activeColor/>
+              <progress percent="{{actor.ratingHigh}}" stroke-width='2' activeColor/>
             </view>
           </view>
-          <text class='vote-text'>90%</text>
+          <text class='vote-text'>{{actor.ratingHigh}}</text>
         </view>
 
         <view class='vote-view-inner'>
           <text class='vote-text'>5-8分</text>
           <view class='vote-progress'>
             <view class='progress'>
-              <progress percent="19" stroke-width='2' activeColor/>
+              <progress percent="{{actor.ratingMiddle}}" stroke-width='2' activeColor/>
             </view>
           </view>
-          <text class='vote-text'>19%</text>
+          <text class='vote-text'>{{actor.ratingMiddle}}</text>
         </view>
 
         <view class='vote-view-inner'>
           <text class='vote-text'>1-4分</text>
           <view class='vote-progress'>
             <view class='progress'>
-              <progress percent="9" stroke-width='2' activeColor/>
+              <progress percent="{{actor.ratingLow}}" stroke-width='2' activeColor/>
             </view>
           </view>
-          <text class='vote-text'>9%</text>
+          <text class='vote-text'>{{actor.ratingLow}}</text>
         </view>
       </view>
 
@@ -89,10 +89,10 @@
         <text class="vote-start-label">评分</text>
         <view class='vote-start-view'>
           <block wx:for="{{stars}}" wx:key="item.id">
-            <image class="vote-start" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(rating/2) > item ?((rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+            <image class="vote-start" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(actor.averageVote/2) > item ?((actor.averageVote/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
             </image>
           </block>
-          <text class="vote-start-text">{{rating}}分</text>
+          <text class="vote-start-text">{{actor.averageVote}}分</text>
         </view>
       </view>
 
@@ -106,7 +106,7 @@
 
   <view class="container-desc">
     <text class="banner-title">影人简介</text>
-    <text class="container-desc-text" style="{{hideText?'-webkit-line-clamp:3':''}}">{{actorDescription}}</text>
+    <text class="container-desc-text" style="{{hideText?'-webkit-line-clamp:3':''}}">{{actor.description}}</text>
     <image class="{{hideClass}}" wx:if="'up=={{hideClass}}'?'':'down'" bindtap="showall" src="../../images/arrow_down.png" />
   </view>
 
@@ -137,9 +137,9 @@
           <text class="banner-contain-inner">{{commentTitle}}</text>
         </view>
       </view>
-      <view class="comment-view" wx:for="{{item2}}" wx:for-item="item">
+      <view class="comment-view" wx:for="{{actor.comments}}" wx:for-item="item">
         <view class="comment-avatar">
-          <image class="icon" src="{{item.avatarurl}}"></image>
+          <image class="icon" src="{{item.avatarUrl}}"></image>
         </view>
         <view class="comment">
           <text class="comment-name">{{item.nickName}}</text>
@@ -150,6 +150,5 @@
 
 
     </view>
-
   </view>
 </view>

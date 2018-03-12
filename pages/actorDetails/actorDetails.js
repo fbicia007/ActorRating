@@ -1,4 +1,5 @@
-// pages/actorDetails/actorDetails.js
+var app = getApp()
+
 Page({
 
   /**
@@ -7,99 +8,22 @@ Page({
   data: {
     headerHeight: "",
     commentTitle: "",
-    commented: false,
+    commented: "",
     hideText: true,
     hideClass: 'up',
-    showRating: false,
+    showRating: true,
     stars: [0, 1, 2, 3, 4],
-    rating: 7,
     normalSrc: '../../images/rating_empty.png',
     selectedSrc: '../../images/rating_full.png',
     halfSrc: '../../images/rating_half.png',
-    actorImage: "https://xuwang.de/actorrating/images/actors/dengchao.jpeg",
-    actorDescription: "一辆宝马牌摩托车在南京机场高速公路上急速行驶，频繁变道超车。其最高速度开到299公里每小时，犹如高铁速度，以至于其影像资料在瞬间变得扭曲。近日，一段时长1分2秒的摩托车手飙车视频在社交平台引发热议。有网友评论称，“太危险了”，速度都快赶上高铁了，看得心惊胆战。甚至有人说，这样的速度跟任何车辆碰擦都是致命的，对于这种“拿生命当儿戏”的行为应该严肃查处。对此，3月1日中午，南京市公安局交通管理局官方微博 @南京交警 对外发布通报称，3月1日上午10时30分，南京交警高速五大队办案民警将违法犯罪嫌疑人史某（1994年生，无业）抓获。警方认为，史某驾驶摩托车在南京机场高速上高速竞驶，涉嫌危险驾驶。",
-    name: "邓超",
-    birthday: "1979-02-08",
-    constellation: "水瓶座",
-    birthplace: "中国,江西,南昌",
-    profession: "演员 / 配音 / 导演",
-    nickName: "",
-    avatarUrl: "",
-    items0: [
-      {
-        image: "http://pic7.qiyipic.com/image/20170424/f3/08/p_1057357_m_601_m3.jpg"
-      },
-      {
-        image: "http://img.chinatimes.com/newsphoto/2015-06-20/656/20150620003057.jpg"
-      },
-      {
-        image: "http://i.shangc.net/2015/1019/20151019050132723.jpg"
-      },
-      {
-        image: "http://img.5669.com/uploads/allimg/150115/37-150115112243912.jpg"
-      },
-      {
-        image: "http://pic7.qiyipic.com/image/20170424/f3/08/p_1057357_m_601_m3.jpg"
-      },
-      {
-        image: "http://img.chinatimes.com/newsphoto/2015-06-20/656/20150620003057.jpg"
-      },
-      {
-        image: "http://i.shangc.net/2015/1019/20151019050132723.jpg"
-      },
-      {
-        image: "http://img.5669.com/uploads/allimg/150115/37-150115112243912.jpg"
-      },
-      {
-        image: "http://img.5669.com/uploads/allimg/150115/37-150115112243912.jpg"
-      }
-    ],
-    items1: [
-      {
-        image: "https://p.nanrenwo.net/uploads/allimg/170105/8450-1F105164K0.jpg",
-        name: '乘风破浪'
-      },
-      {
-        image: "http://p3.ifengimg.com/a/2017_36/5c164c74e15f86e_size93_w350_h500.jpg",
-        name: '城市之光'
-      },
-      {
-        image: "http://img31.mtime.cn/CMS/Gallery/2015/07/27/114956.20445766_1000.jpg",
-        name: '烈日灼心'
-      }
-    ],
-    item2: [
-      {
-        avatarurl: "https://wx.qlogo.cn/mmopen/vi_32/biaSJicGMdVg4YibV32Dhl8Q3RxIsKsFic7BLfrFxjLPItZ3ib69yia5mQrjxribe87ibTHBAlZUHV8iaibQAhOVn7sy3zng/0",
-        nickName: "张鹏",
-        comment: "测试评论123",
-        time: "2018-03-01"
-      },
-      {
-        avatarurl: "https://wx.qlogo.cn/mmopen/vi_32/biaSJicGMdVg4YibV32Dhl8Q3RxIsKsFic7BLfrFxjLPItZ3ib69yia5mQrjxribe87ibTHBAlZUHV8iaibQAhOVn7sy3zng/0",
-        nickName: "张鹏",
-        comment: "测试评论456",
-        time: "2018-03-01"
-      },
-      {
-        avatarurl: "https://wx.qlogo.cn/mmopen/vi_32/biaSJicGMdVg4YibV32Dhl8Q3RxIsKsFic7BLfrFxjLPItZ3ib69yia5mQrjxribe87ibTHBAlZUHV8iaibQAhOVn7sy3zng/0",
-        nickName: "张鹏",
-        comment: "测试评论789",
-        time: "2018-03-01"
-      },
-      {
-        avatarurl: "https://wx.qlogo.cn/mmopen/vi_32/biaSJicGMdVg4YibV32Dhl8Q3RxIsKsFic7BLfrFxjLPItZ3ib69yia5mQrjxribe87ibTHBAlZUHV8iaibQAhOVn7sy3zng/0",
-        nickName: "张鹏",
-        comment: "随便写写",
-        time: "2018-03-01"
-      }
-    ]
+    actor: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("onLoad")
     if (this.data.showRating) {
       this.setData({
         headerHeight: 520
@@ -110,39 +34,11 @@ Page({
       })
     }
 
-    if (this.data.commented) {
-      this.setData({
-        commentTitle: "我的评论"
-      })
-    } else {
-      this.setData({
-        commentTitle: "我要评论"
-      })
-    }
-
     var that = this
-    wx.login({
-      success: function (res) {
-        console.log("login: ", res)
+    var openId = app.globalData.userInfo.openId
+    var actorId = options.id
 
-        wx.getUserInfo({
-          success: function (res) {
-            console.log("getUserInfo: ", res)
-            that.setData({
-              nickName: res.userInfo.nickName,
-              avatarUrl: res.userInfo.avatarUrl,
-            })
-          },
-        })
-
-        console.log(that.data.nickName)
-        console.log(that.data.avatarUrl)
-      }
-    })
-
-
-
-
+    loadActorDetails(that, openId, actorId)
     
   },
 
@@ -157,7 +53,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log("onshow")
+    if (app.globalData.reloadActorDetail) {
+      var that = this
+      var openId = app.globalData.userInfo.openId
+      var actorId = this.data.actor.id
+      console.log("reload")
+      loadActorDetails(that, openId, actorId)
+    }
   },
 
   /**
@@ -196,8 +99,9 @@ Page({
   },
 
   onCommentClicked: function () {
+    var that = this
     wx.navigateTo({
-      url: '../comment/comment',
+      url: '../comment/comment?actorId=' + that.data.actor.id + '&commented=' + that.data.commented,
     })
   },
 
@@ -213,3 +117,40 @@ Page({
   
   
 })
+
+function loadActorDetails(that, openId, actorId) {
+  wx.showLoading({
+    title: '全力加载中...',
+  })
+
+  app.getActorDetail(actorId, function (res) {
+    wx.hideLoading()
+
+    var data = res.data[0]
+    console.log("data: ", data)
+
+    that.setData({
+      actor: data
+    })
+  })
+
+  app.getMyComment(openId, actorId, function (res) {
+    wx.hideLoading()
+
+    var data = res.data[0]
+    console.log("comment: ", data)
+
+    if (data.comment != "" && data.rating != "") {
+      that.setData({
+        commentTitle: "我的评论",
+        commented: true
+      })
+    } else {
+      that.setData({
+        commentTitle: "我要评论",
+        commented: false
+      })
+    }
+
+  }) 
+}

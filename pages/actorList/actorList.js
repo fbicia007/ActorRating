@@ -10,7 +10,7 @@ Page({
     inputText: "",
     searchText: "",
     focus: true,
-    films: [],
+    actors: [],
     start: 0,
     count: 0,
     hasMore: true
@@ -21,7 +21,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '搜索影片',
+      title: '搜索演员',
     })
 
     this.setData({
@@ -111,12 +111,11 @@ Page({
     onSearchRequest(this, this.data.inputText, 0, 15)
   },
 
-  onFilmClicked: function (e) {
+  onActorClicked: function (e) {
     var data = e.currentTarget.dataset
     console.log("data: ", data)
-    console.log("click id: ", data.id, " stauts: ", data.status)
     wx.navigateTo({
-      url: '../actorDetails/actorDetails',
+      url: '../actorDetails/actorDetails?id=' + data.id,
     })
   }
 })
@@ -125,7 +124,7 @@ function onSearchRequest(that, value, start, count) {
   that.setData({
     searchText: value
   })
-  app.getSearchRequest(value, start, count, function (res) {
+  app.getActors(value, start, count, function (res) {
     var data = []
     for (var i = 0; i < res.data.length; i++) {
       if (res.data[i] != null) {
@@ -140,15 +139,17 @@ function onSearchRequest(that, value, start, count) {
       }
     }
 
-    var films = []
+    console.log("actor: ", data)
+
+    var actors = []
     if (start == 0) {
-      films = data
+      actors = data
     } else {
-      films = that.data.films.concat(data)
+      actors = that.data.actors.concat(data)
     }
 
     that.setData({
-      films: films
+      actors: actors
     })
   })
 }

@@ -18,7 +18,7 @@
 
   <view class="input-view">
     <form bindsubmit="bindFormSubmit">
-      <textarea class="input-area" name="comment" placeholder="可输入140字" maxlength="140" value="{{comment}}" bindinput="textareaBindInput"></textarea>
+      <textarea class="input-area" name="comment" placeholder="可输入140字" maxlength="140" value="{{contents.comment}}" bindinput="textareaBindInput"></textarea>
       <button class='btn-submit' type="primary" form-type="submit" disabled="{{buttonDisabled}}">提交</button>
     </form>
   </view>
