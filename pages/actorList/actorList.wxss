@@ -31,19 +31,37 @@
   display: flex;
   padding: 10rpx 10rpx;
   border-bottom: 2rpx solid #eee;
+  align-items: center;
 }
 
-.item .actor-photo {
+.actor-photo {
   width: 120rpx;
   height: 120rpx;
   margin-right: 20rpx;
 }
 
-.item .actor-name {
+.actor-name {
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
+.star {
+  width: 30rpx;
+  height: 30rpx;
+  src: "../../images/normal.png";
+}
+
+.section-item-header {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #a8a8a8;
+  background-color: #f2f4f5;
+  padding: 4rpx 20rpx;
+}
+
 .hover{
   background-color: #F2F2F2;
 }

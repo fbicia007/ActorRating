@@ -13,7 +13,12 @@ Page({
     actors: [],
     start: 0,
     count: 0,
-    hasMore: true
+    hasMore: true,
+    stars: [0, 1, 2, 3, 4],
+    normalSrc: '../../images/rating_empty.png',
+    selectedSrc: '../../images/rating_full.png',
+    halfSrc: '../../images/rating_half.png',
+    averageVote: 3
   },
 
   /**
@@ -125,10 +130,26 @@ function onSearchRequest(that, value, start, count) {
     searchText: value
   })
   app.getActors(value, start, count, function (res) {
-    var data = []
+    console.log("actors res: ", res)
+    if (start == 0) {
+      var dataWithRating = []
+      var dataWithoutRating = []
+    } else {
+      var dataWithRating = that.data.actors[0].data
+      var dataWithoutRating = that.data.actors[1].data
+    }
+
+    var list = [{ "section": "", data: dataWithRating },
+    { "section": "未达到最少评分条件", data: dataWithoutRating }]
     for (var i = 0; i < res.data.length; i++) {
       if (res.data[i] != null) {
-        data.push(res.data[i])
+        var tmpData = res.data[i]
+        if (tmpData.rated) {
+          dataWithRating.push(tmpData)
+        } else {
+          dataWithoutRating.push(tmpData)
+        }
+
         that.setData({
           hasMore: true
         })
@@ -139,17 +160,11 @@ function onSearchRequest(that, value, start, count) {
       }
     }
 
-    console.log("actor: ", data)
-
-    var actors = []
-    if (start == 0) {
-      actors = data
-    } else {
-      actors = that.data.actors.concat(data)
-    }
+    console.log("actors: ", list)
 
     that.setData({
-      actors: actors
+      actors: list
     })
+    
   })
 }

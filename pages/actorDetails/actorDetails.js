@@ -11,7 +11,7 @@ Page({
     commented: "",
     hideText: true,
     hideClass: 'up',
-    showRating: true,
+    showRating: false,
     stars: [0, 1, 2, 3, 4],
     normalSrc: '../../images/rating_empty.png',
     selectedSrc: '../../images/rating_full.png',
@@ -23,17 +23,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("onLoad")
-    if (this.data.showRating) {
-      this.setData({
-        headerHeight: 520
-      })
-    } else {
-      this.setData({
-        headerHeight: 380
-      })
-    }
-
     var that = this
     var openId = app.globalData.userInfo.openId
     var actorId = options.id
@@ -132,6 +121,18 @@ function loadActorDetails(that, openId, actorId) {
     that.setData({
       actor: data
     })
+
+    if (data.rated) {
+      that.setData({
+        headerHeight: 520,
+        showRating: true
+      })
+    } else {
+      that.setData({
+        headerHeight: 380,
+        showRating: false
+      })
+    }
   })
 
   app.getMyComment(openId, actorId, function (res) {
@@ -151,6 +152,5 @@ function loadActorDetails(that, openId, actorId) {
         commented: false
       })
     }
-
   }) 
 }

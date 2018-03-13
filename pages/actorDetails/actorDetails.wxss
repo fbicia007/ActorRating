@@ -154,29 +154,29 @@
   justify-content: center;
 }
 
-.vote-start-label {
+.vote-star-label {
   position: relative;
   color: #fff;
   font-size: 26rpx;
   margin: 0 20rpx;
 }
 
-.vote-start-view {
+.vote-star-view {
   position: relative;
   margin: 0 20rpx;
 }
 
-.vote-start {
+.vote-star {
   width: 20rpx;
   height: 20rpx;
   src: "../../images/normal.png";
 }
 
-.vote-start-text {
+.vote-star-text {
   position: relative;
   color: #fff;
   font-size: 20rpx;
-  margin: 0 20rpx 0 10rpx;
+  margin: 0 10rpx 0 10rpx;
 }
 
 .container-desc {
@@ -353,15 +353,21 @@
   line-height: 20rpx;
 }
 
+.comment-star {
+  width: 20rpx;
+  height: 20rpx;
+  src: "../../images/normal.png";
+}
+
 .comment-content {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   color: #000;
   font-size: 28rpx;
   line-height: 1.5;
 }
 
 .comment-date {
-  margin-top: 8rpx;
+  margin-top: 10rpx;
   font-size: 24rpx;
   color: #666;
 }

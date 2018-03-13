@@ -52,52 +52,51 @@
     </view> -->
     <view wx:if="{{showRating}}">
 
-    <view class='vote-view'>
-      <view class='vote-view-background'>
-        <view class='vote-view-inner'>
-          <text class='vote-text'>9-10分</text>
-          <view class='vote-progress'>
-            <view class='progress'>
-              <progress percent="{{actor.ratingHigh}}" stroke-width='2' activeColor/>
+      <view class='vote-view'>
+        <view class='vote-view-background'>
+          <view class='vote-view-inner'>
+            <text class='vote-text'>9-10分</text>
+            <view class='vote-progress'>
+              <view class='progress'>
+                <progress percent="{{actor.ratingHigh}}" stroke-width='2' activeColor/>
+              </view>
             </view>
+            <text class='vote-text'>{{actor.ratingHigh}}</text>
           </view>
-          <text class='vote-text'>{{actor.ratingHigh}}</text>
+
+          <view class='vote-view-inner'>
+            <text class='vote-text'>5-8分</text>
+            <view class='vote-progress'>
+              <view class='progress'>
+                <progress percent="{{actor.ratingMiddle}}" stroke-width='2' activeColor/>
+              </view>
+            </view>
+            <text class='vote-text'>{{actor.ratingMiddle}}</text>
+          </view>
+
+          <view class='vote-view-inner'>
+            <text class='vote-text'>1-4分</text>
+            <view class='vote-progress'>
+              <view class='progress'>
+                <progress percent="{{actor.ratingLow}}" stroke-width='2' activeColor/>
+              </view>
+            </view>
+            <text class='vote-text'>{{actor.ratingLow}}</text>
+          </view>
         </view>
 
-        <view class='vote-view-inner'>
-          <text class='vote-text'>5-8分</text>
-          <view class='vote-progress'>
-            <view class='progress'>
-              <progress percent="{{actor.ratingMiddle}}" stroke-width='2' activeColor/>
-            </view>
+        <view class='vote-star-background'>
+          <text class="vote-star-label">评分</text>
+          <view class='vote-star-view'>
+            <block wx:for="{{stars}}" wx:key="item.id">
+              <image class="vote-star" src="{{(actor.averageRating/2) > item ?((actor.averageRating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}"></image>
+            </block>
+            <text class="vote-star-text">{{actor.averageRating}}分</text>
           </view>
-          <text class='vote-text'>{{actor.ratingMiddle}}</text>
         </view>
 
-        <view class='vote-view-inner'>
-          <text class='vote-text'>1-4分</text>
-          <view class='vote-progress'>
-            <view class='progress'>
-              <progress percent="{{actor.ratingLow}}" stroke-width='2' activeColor/>
-            </view>
-          </view>
-          <text class='vote-text'>{{actor.ratingLow}}</text>
-        </view>
       </view>
 
-      <view class='vote-star-background'>
-        <text class="vote-start-label">评分</text>
-        <view class='vote-start-view'>
-          <block wx:for="{{stars}}" wx:key="item.id">
-            <image class="vote-start" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(actor.averageVote/2) > item ?((actor.averageVote/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
-            </image>
-          </block>
-          <text class="vote-start-text">{{actor.averageVote}}分</text>
-        </view>
-      </view>
-
-    </view>
-    
     </view>
 
 
@@ -137,17 +136,21 @@
           <text class="banner-contain-inner">{{commentTitle}}</text>
         </view>
       </view>
-      <view class="comment-view" wx:for="{{actor.comments}}" wx:for-item="item">
+      <view class="comment-view" wx:for="{{actor.comments}}" wx:for-item="comments">
         <view class="comment-avatar">
-          <image class="icon" src="{{item.avatarUrl}}"></image>
+          <image class="icon" src="{{comments.avatarUrl}}"></image>
         </view>
         <view class="comment">
-          <text class="comment-name">{{item.nickName}}</text>
-          <view class="comment-content">{{item.comment}}</view>
-          <view class="comment-date">{{item.time}}</view>
+          <text class="comment-name">{{comments.nickName}}</text>
+         <view>
+            <block wx:for="{{stars}}" wx:key="comments.id">
+              <image class="comment-star" src="{{(comments.rating/2) > item ?((comments.rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}"></image>
+            </block>
+          </view>
+          <view class="comment-content">{{comments.comment}}</view>
+          <view class="comment-date">{{comments.time}}</view>
         </view>
       </view>
-
 
     </view>
   </view>
