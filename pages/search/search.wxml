@@ -1,13 +1,14 @@
 <!--pages/search/search.wxml-->
 <view class="search-container">
   <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='{{focus}}'></input>
-  <text bindtap='onClearClicked'>取消</text>
-</view>
-<scroll-view scroll-y="true">
-  <view wx:for="{{films}}" wx:key="unique">
-    <view class='item' hover-class="hover" data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
-      <image class="film-photo" src="{{item.posterV}}" mode='aspectFit'></image>
-      <text class='film-name'>{{item.title}}</text>
-    </view>
+  <view class='clearButtonView'>
+    <text class='clearButtonText' bindtap='onClearClicked'>取消</text>
   </view>
-</scroll-view>
+</view>
+
+<view wx:for="{{films}}" wx:key="unique">
+  <view class='item' hover-class="hover" data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
+    <image class="film-photo" src="{{item.posterV}}" mode='aspectFit'></image>
+    <text class='film-name'>{{item.title}}</text>
+  </view>
+</view>

@@ -91,6 +91,7 @@ App({
   },
   getActors: function (text, start, count, cb) {
     var that = this
+    console.log("getActors url: ", that.globalData.basicUrl + "/actors?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count)
     wx.request({
       url: that.globalData.basicUrl + "/actors?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count,
       header: {
@@ -103,6 +104,7 @@ App({
   },
   getActorDetail: function (id, cb) {
     var that = this
+    console.log("getActorDetail url: ", that.globalData.basicUrl + "/actors?id=" + id)
     wx.request({
       url: that.globalData.basicUrl + "/actors?id=" + id,
       header: {
@@ -115,6 +117,7 @@ App({
   },
   getMyComment: function (openId, actorId, cb) {
     var that = this
+    console.log("getMyComment url: ", that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId)
     wx.request({
       url: that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId,
       header: {
@@ -127,6 +130,7 @@ App({
   },
   doComment: function (openId, actorId, rating, comment, cb) {
     var that = this
+    console.log("comment url: ", that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId + '&rating=' + rating + '&comment=' + comment)
     wx.request({
       url: that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId + '&rating=' + rating + '&comment=' + comment,
       header: {

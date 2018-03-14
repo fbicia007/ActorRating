@@ -92,8 +92,9 @@
   border:1px solid #fff !important;
   background-color:#fff;
   color:#2aac5e !important;
-  line-height:1;
-  margin:0;
+  line-height: 1.2;
+  font-size: 35rpx;
+  margin: 0;
 }
 .p-t-0{
   padding-bottom: 0;

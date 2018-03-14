@@ -45,6 +45,7 @@ Page({
   onShow: function () {
     console.log("onshow")
     if (app.globalData.reloadActorDetail) {
+      app.globalData.reloadActorDetail = false
       var that = this
       var openId = app.globalData.userInfo.openId
       var actorId = this.data.actor.id

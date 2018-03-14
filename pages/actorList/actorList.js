@@ -24,7 +24,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '搜索演员',
+      title: '演员',
     })
 
     this.setData({
