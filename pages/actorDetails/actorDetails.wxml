@@ -89,7 +89,7 @@
           <text class="vote-star-label">评分</text>
           <view class='vote-star-view'>
             <block wx:for="{{stars}}" wx:key="item.id">
-              <image class="vote-star" src="{{(actor.averageRating/2) > item ?((actor.averageRating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}"></image>
+              <image class="vote-star" src="{{(averageRating/2) > item ?((averageRating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}"></image>
             </block>
             <text class="vote-star-text">{{actor.averageRating}}分</text>
           </view>

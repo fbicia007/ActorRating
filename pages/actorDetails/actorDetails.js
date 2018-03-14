@@ -16,7 +16,8 @@ Page({
     normalSrc: '../../images/rating_empty.png',
     selectedSrc: '../../images/rating_full.png',
     halfSrc: '../../images/rating_half.png',
-    actor: ""
+    actor: "",
+    averageRating: ""
   },
 
   /**
@@ -119,7 +120,8 @@ function loadActorDetails(that, openId, actorId) {
     console.log("data: ", data)
 
     that.setData({
-      actor: data
+      actor: data,
+      averageRating: Math.round(data.averageRating)
     })
 
     if (data.rated) {

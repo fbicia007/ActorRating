@@ -9,7 +9,6 @@ Page({
   data: {
     inputText: "",
     searchText: "",
-    focus: true,
     actors: [],
     start: 0,
     count: 0,
@@ -17,8 +16,7 @@ Page({
     stars: [0, 1, 2, 3, 4],
     normalSrc: '../../images/rating_empty.png',
     selectedSrc: '../../images/rating_full.png',
-    halfSrc: '../../images/rating_half.png',
-    averageVote: 3
+    halfSrc: '../../images/rating_half.png'
   },
 
   /**
@@ -130,22 +128,23 @@ function onSearchRequest(that, value, start, count) {
     searchText: value
   })
   app.getActors(value, start, count, function (res) {
-    console.log("actors res: ", res)
-    if (start == 0) {
-      var dataWithRating = []
-      var dataWithoutRating = []
-    } else {
-      var dataWithRating = that.data.actors[0].data
-      var dataWithoutRating = that.data.actors[1].data
-    }
+    var dataWithRating = []
+    var dataWithoutRating = []
+    var averageRating = []
+    if (start != 0) {
+      dataWithRating = that.data.actors[0].data
+      dataWithoutRating = that.data.actors[1].data
+      averageRating = that.data.actors[0].rating
+    }  
 
-    var list = [{ "section": "", data: dataWithRating },
+    var list = [{ "section": "", data: dataWithRating, rating: averageRating},
     { "section": "未达到最少评分条件", data: dataWithoutRating }]
     for (var i = 0; i < res.data.length; i++) {
       if (res.data[i] != null) {
         var tmpData = res.data[i]
         if (tmpData.rated) {
           dataWithRating.push(tmpData)
+          averageRating.push(Math.round(tmpData.averageRating))
         } else {
           dataWithoutRating.push(tmpData)
         }
@@ -158,6 +157,10 @@ function onSearchRequest(that, value, start, count) {
           hasMore: false
         })
       }
+    }
+
+    if (dataWithoutRating.length == 0) {
+      list.splice(1, 1)
     }
 
     console.log("actors: ", list)

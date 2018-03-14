@@ -1,6 +1,6 @@
 <!--pages/actorList/actorList.wxml-->
 <view class="search-container">
-  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='{{focus}}'></input>
+  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}'></input>
   <text bindtap='onClearClicked'>取消</text>
 </view>
 <scroll-view scroll-y="true">
@@ -13,10 +13,9 @@
         <image class="actor-photo" src="{{actors.photo}}" mode='aspectFit'></image>
         <text class='actor-name'>{{actors.name}}</text>
         <view wx:if="{{item.section == ''}}">
-                <block wx:for="{{stars}}" wx:key="actors.id">
-          <image class="star" src="{{(actors.averageRating/2) > item ?((actors.averageRating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
-          </image>
-        </block>
+          <block wx:for="{{stars}}" wx:key="actors.id">
+            <image class="star" src="{{(averageRating/2) > item ?((averageRating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}"></image>
+          </block>
         </view>
 
       </view>

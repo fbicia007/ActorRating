@@ -18,7 +18,7 @@
   "tabBar": {
     "color": "#bfbfbf",
     "selectedColor": "#42BD56",
-    "borderStyle": "white",
+    "borderStyle": "grey",
     "list": [
       {
         "selectedIconPath": "images/movie_selected.png",
