@@ -21,17 +21,9 @@
 
 .header-bg {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  right: 0;
   width: 100%;
-  filter: blur(50px);
+  filter: blur(45px); 
   z-index: 0;
-  background-size: cover;
-  background-image: gray;
-  background-repeat: no-repeat;
-  background-position-y: 40%;
 }
 
 .header-left {

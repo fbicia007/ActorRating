@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header" style='height: {{headerHeight}}rpx'>
-    <image class="header-bg" src="{{actor.photo}}"></image>
+    <image class="header-bg" src="{{actor.photo}}" style='height: {{headerHeight}}rpx' mode='aspectFill'></image>
     <view class="header-left">
       <image src="{{actor.photo}}"></image>
       <view></view>
