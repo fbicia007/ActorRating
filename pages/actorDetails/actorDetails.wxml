@@ -2,7 +2,8 @@
 <view class="container">
   <view class="header" style='height: {{headerHeight}}rpx'>
     <image class="header-bg" src="{{actor.photo}}" style='height: {{headerHeight}}rpx' mode='aspectFill'></image>
-    <view class="header-left">
+    <view class='header-content'>
+        <view class="header-left">
       <image src="{{actor.photo}}"></image>
       <view></view>
     </view>
@@ -42,6 +43,8 @@
         </view>
       </view> -->
     </view>
+    </view>
+
     <!-- <view class="header-button">
       <view bindtap="onCommentClicked">
         <text class='header-button-text'>⭐ 评分</text>
