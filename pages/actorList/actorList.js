@@ -131,7 +131,8 @@ Page({
 
 function onSearchRequest(that, value, start, count) {
   that.setData({
-    searchText: value
+    searchText: value,
+    actors: ""
   })
   app.getActors(value, start, count, function (res) {
     var dataWithRating = []
