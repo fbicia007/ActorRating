@@ -43,14 +43,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onshow")
     if (app.globalData.reloadActorDetail) {
       app.globalData.reloadActorDetail = false
-      var that = this
       var openId = app.globalData.userInfo.openId
       var actorId = this.data.actor.id
-      console.log("reload")
-      loadActorDetails(that, openId, actorId)
+      loadActorDetails(this, openId, actorId)
     }
   },
 

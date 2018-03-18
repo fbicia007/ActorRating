@@ -139,7 +139,7 @@
           <text class="banner-contain-inner">{{commentTitle}}</text>
         </view>
       </view>
-      <view class="comment-view" wx:for="{{actor.comments}}" wx:for-item="comments">
+      <view class="comment-view" wx:for="{{actor.comments}}" wx:for-item="comments" wx:key="unique">
         <view class="comment-avatar">
           <image class="icon" src="{{comments.avatarUrl}}"></image>
         </view>

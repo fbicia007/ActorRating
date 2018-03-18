@@ -115,9 +115,17 @@ Page({
     var data = e.currentTarget.dataset
     console.log("data: ", data)
     console.log("click id: ", data.id, " stauts: ", data.status)
+
+    if (data.status == 0) {
+      var url = '../shootingMovieDetails/shootingMovieDetails?id=' + data.id + "&status=" + data.status
+    } else {
+      var url = '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status
+    }
+
     wx.navigateTo({
-      url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
+      url: url
     })
+
   }
 })
 

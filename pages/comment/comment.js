@@ -27,6 +27,7 @@ Page({
         ratingMarginLeft: (windowWidth - 5 * 50) / 2
       })
       app.globalData.reloadActorDetail = false
+      app.globalData.reloadActorList = false
 
       var that = this
       var actorId = options.actorId
@@ -145,6 +146,7 @@ Page({
     app.doComment(openId, actorId, rating, value.comment, function(res) {
       wx.hideLoading()
       app.globalData.reloadActorDetail = true
+      app.globalData.reloadActorList = true
       wx.showToast({
         title: '评论成功',
         icon: 'success',

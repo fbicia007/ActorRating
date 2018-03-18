@@ -1,5 +1,11 @@
 <view class="stv-container">
-  <image class="movie-poster" src="{{movie.posterH}}" bindload='loadMoviePoster' style='width:{{moviePosterWidth}}px' mode="widthFix" />
+  <view style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' wx:if="{{movie.posterH == ''}}">
+    <image src="{{movie.posterV}}" bindload='loadMoviePoster' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="aspectFill" />
+  </view>
+  <view style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' wx:else>
+    <image src="{{movie.posterH}}" bindload='loadMoviePoster' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="widthFix" />
+  </view>
+
   <view class="tab-bar">
     <view wx:for="{{tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
       <text class='page-text'>{{item}}</text>
@@ -16,20 +22,22 @@
                 <image class="actor-photo" src="{{item.photo}}" mode='aspectFit'></image>
                 <text class='actor-name'>{{item.name}} 饰演 {{item.role}}</text>
                 <view class='actor-like' hover-class="hover" bindtap='onLikeClicked' data-movie-id="{{movie.id}}" data-actor-id="{{item.id}}" data-like-symbol="{{item.likeSymbol}}">
-                <view wx:if="{{item.likeSymbol}}">
-                  <image class='actor-like-image' src='../../images/like_active.png' mode='aspectFit'></image>  
-                </view>
-                <view wx:else>
-                  <image class='actor-like-image' src='../../images/like_normal.png' mode='aspectFit'></image>
-                </view>
-                  
+                  <view wx:if="{{item.likeSymbol}}">
+                    <image class='actor-like-image' src='../../images/like_active.png' mode='aspectFit'></image>
+                  </view>
+                  <view wx:else>
+                    <image class='actor-like-image' src='../../images/like_normal.png' mode='aspectFit'></image>
+                  </view>
+
                   <text class='actor-like-count'>{{item.like}}</text>
                 </view>
               </view>
             </view>
           </view>
           <view hidden='{{activeTab == 1}}'>
-            <text>{{movie.description}}</text>
+            <view class='movieDescription'>
+              <text>{{movie.description}}</text>
+            </view>
           </view>
         </scroll-view>
       </view>

@@ -156,7 +156,6 @@
 .vote-star-view {
   position: relative;
   margin: 0 20rpx;
-  background: red;
 }
 
 .vote-star {

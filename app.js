@@ -7,9 +7,10 @@ App({
     qcloud.setLoginUrl(config.service.loginUrl)
   },
   globalData: {
-    userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
-    // userInfo: "",
+    // userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
+    userInfo: "",
     reloadActorDetail: false,
+    reloadActorList: false,
     basicUrl: "https://xuwang.de/actorrating",
     statusList: { "0": "coming_soon", "1": "in_theaters" },
     pageTypelist: { "coming_soon": "即将拍摄", "in_theaters": "正在热映" }
@@ -55,7 +56,7 @@ App({
   getSearchRequest: function (text, start, count, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/search?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/search?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },
@@ -91,9 +92,9 @@ App({
   },
   getActors: function (text, start, count, cb) {
     var that = this
-    console.log("getActors url: ", that.globalData.basicUrl + "/actors?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count)
+    console.log("getActors url: ", that.globalData.basicUrl + "/actors?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count)
     wx.request({
-      url: that.globalData.basicUrl + "/actors?srch_text=%" + text + "%" + '&start=' + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/actors?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },

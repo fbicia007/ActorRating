@@ -23,14 +23,15 @@
 }
 
 .page-text {
-  font-size: 40rpx;
+  font-size: 30rpx;
 }
 
 .stv-container .tab-bar {
   position: relative;
   display: flex;
   color: #666;
-  padding-top: 16rpx;
+  height: 88rpx;
+  background-color: white;
 }
 
 .stv-container .tab-bar .tab-active {
@@ -41,8 +42,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 16rpx;
-  padding-bottom: 20rpx;
 }
 
 .stv-container .tab-bar .under-line {
@@ -81,8 +80,8 @@
 }
 
 .card {
-  background: #f6f6f6;
-  margin: 20rpx 10rpx;
+  background-color: #f2f4f5;
+  margin: 20rpx 20rpx;
   padding: 10rpx 10rpx;
   border-radius: 20rpx;
 }

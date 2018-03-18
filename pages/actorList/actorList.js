@@ -49,7 +49,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (app.globalData.reloadActorList) {
+      app.globalData.reloadActorList = false
+      onSearchRequest(this, this.data.inputText, this.data.start, this.data.count)
+    }
   },
 
   /**
@@ -102,6 +105,9 @@ Page({
     clearTimeout(timer)
     var that = this
     timer = setTimeout(function () {
+      that.setData({
+        inputText: value
+      })
       onSearchRequest(that, value, 0, 15)
     }, 300)
 

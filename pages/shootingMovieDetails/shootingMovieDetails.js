@@ -8,6 +8,8 @@ Page({
   data: {
     options: "",
     showModalStatus: false,
+    moviePosterWidth: 0,
+    moviePosterHeight: 0,
     tabs: ['简介', '角色'],
     stv: {
       windowWidth: 0,
@@ -38,6 +40,19 @@ Page({
       options: options
     })
 
+    let { tabs } = this.data
+    var res = wx.getSystemInfoSync()
+    this.windowWidth = res.windowWidth
+    this.data.stv.lineWidth = this.windowWidth / this.data.tabs.length
+    this.data.stv.windowWidth = res.windowWidth
+    this.data.stv.windowHeight = res.windowHeight
+    this.setData({
+      stv: this.data.stv,
+      moviePosterWidth: res.windowWidth,
+      moviePosterHeight: res.windowHeight / 4
+    })
+    this.tabsCount = tabs.length
+
     wx.showLoading({
       title: '全力加载中...',
     })
@@ -52,23 +67,10 @@ Page({
       })
       that.setData({
         movie: data,
-        roles: data.roles
+        roles: data.roles,
       })
       console.log("roles: ", data.roles)
     })
-
-
-    let { tabs } = this.data;
-    var res = wx.getSystemInfoSync()
-    this.windowWidth = res.windowWidth;
-    this.data.stv.lineWidth = this.windowWidth / this.data.tabs.length
-    this.data.stv.windowWidth = res.windowWidth
-    this.data.stv.windowHeight = res.windowHeight
-    this.data.stv.pageHeight = this.data.stv.windowHeight - 50
-    this.setData({
-      stv: this.data.stv
-    })
-    this.tabsCount = tabs.length
   },
 
   /**
@@ -118,6 +120,14 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  loadMoviePoster: function (e) {
+    let { stv } = this.data;
+    stv.pageHeight = this.data.stv.windowHeight - this.data.moviePosterHeight - 40
+    this.setData({
+      stv: this.data.stv
+    })
   },
 
   updateSelectedPage(page) {
@@ -183,6 +193,13 @@ Page({
         }
       )
     }
+  },
+
+  onPhotoClicked: function(e) {
+    // var data = e.currentTarget.dataset
+    // wx.navigateTo({
+    //   url: '../actorDetails/actorDetails?id=' + data.id,
+    // })
   },
 
   onVoteClicked: function(e) {

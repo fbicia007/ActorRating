@@ -1,3 +1,4 @@
+
 .stv-container {
   position: fixed;
   top: 0;
@@ -23,14 +24,15 @@
 }
 
 .page-text {
-  font-size: 40rpx;
+  font-size: 30rpx;
 }
 
 .stv-container .tab-bar {
   position: relative;
   display: flex;
   color: #666;
-  padding-top: 16rpx;
+  height: 88rpx;
+  background-color: white;
 }
 
 .stv-container .tab-bar .tab-active {
@@ -41,8 +43,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 16rpx;
-  padding-bottom: 20rpx;
 }
 
 .stv-container .tab-bar .under-line {
@@ -71,6 +71,10 @@
 
 .one-scene text {
   display: flex;
+}
+
+.movieDescription {
+  display: flex;
   justify-content: center;
   padding: 30rpx;
   line-height: 1.5;
@@ -80,6 +84,7 @@
   display: flex;
   padding: 20rpx 20rpx;
   border-bottom: 2rpx solid #eee;
+  align-items: center;
 }
 
 .item .actor-photo {
@@ -92,6 +97,7 @@
   width: 70%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .item .actor-like {

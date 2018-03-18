@@ -32,6 +32,18 @@ Page({
     var movies = ""
     var openId = app.globalData.userInfo.openId
 
+    let { tabs } = this.data
+    var res = wx.getSystemInfoSync()
+    this.windowWidth = res.windowWidth
+    this.data.stv.lineWidth = this.windowWidth / this.data.tabs.length
+    this.data.stv.windowWidth = res.windowWidth
+    this.data.stv.windowHeight = res.windowHeight
+    this.setData({
+      stv: this.data.stv,
+      moviePosterWidth: res.windowWidth
+    })
+    this.tabsCount = tabs.length
+
     wx.showLoading({
       title: '全力加载中...',
     })
@@ -52,17 +64,6 @@ Page({
       console.log("actors: ", data.actors)
     })
 
-    let { tabs } = this.data;
-    var res = wx.getSystemInfoSync()
-    this.windowWidth = res.windowWidth;
-    this.data.stv.lineWidth = this.windowWidth / this.data.tabs.length
-    this.data.stv.windowWidth = res.windowWidth
-    this.data.stv.windowHeight = res.windowHeight
-    this.setData({
-      stv: this.data.stv,
-      moviePosterWidth: res.windowWidth
-    })
-    this.tabsCount = tabs.length;
   },
 
   /**
