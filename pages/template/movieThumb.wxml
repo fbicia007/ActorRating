@@ -1,7 +1,7 @@
 <!--pages/template/movieThumb.wxml-->
 <template name="movieThumb">
   <view wx:key="id" class="film-item" hover-class="hover" data-status="{{status}}" data-id="{{id}}" bindtap="onDetailClicked">
-    <image src="{{posterV}}" class="film-image"></image>
+    <image src="{{posterV}}" class="film-image" binderror='loadMoviePosterError' data-status="{{status}}" data-id="{{id}}"></image>
     <text class="film-title">{{title}}</text>
   </view>
 </template>

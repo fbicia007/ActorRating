@@ -1,9 +1,12 @@
 <view class="stv-container">
-  <view style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' wx:if="{{movie.posterH == ''}}">
-    <image src="{{movie.posterV}}" bindload='loadMoviePoster' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="aspectFill" />
+  <!-- <view style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' wx:if="{{movie.posterH == ''}}">
+    <image src="{{movie.posterV}}" bindload='loadMoviePoster' binderror='loadImageError' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="aspectFill" />
   </view>
   <view style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' wx:else>
-    <image src="{{movie.posterH}}" bindload='loadMoviePoster' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="widthFix" />
+    <image src="{{moviePoster}}" bindload='loadMoviePoster' binderror='loadImageError' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="widthFix" />
+  </view> -->
+  <view style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px'>
+    <image src="{{moviePoster}}" bindload='loadMoviePoster' binderror='loadMoviePosterError' style='width:{{moviePosterWidth}}px; height:{{moviePosterHeight}}px' mode="{{imageMode}}" />
   </view>
 
   <view class="tab-bar">

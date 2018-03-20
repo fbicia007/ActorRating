@@ -7,6 +7,9 @@ Page({
    */
   data: {
     moviePosterWidth: 0,
+    moviePosterHeight: 0,
+    moviePoster: "",
+    imageMode: "",
     tabs: ['简介', '演员'],
     stv: {
       windowWidth: 0,
@@ -40,7 +43,8 @@ Page({
     this.data.stv.windowHeight = res.windowHeight
     this.setData({
       stv: this.data.stv,
-      moviePosterWidth: res.windowWidth
+      moviePosterWidth: res.windowWidth,
+      moviePosterHeight: res.windowHeight / 4
     })
     this.tabsCount = tabs.length
 
@@ -58,10 +62,14 @@ Page({
       })
       that.setData({
         movie: data,
-        actors: data.actors
+        actors: data.actors,
+        moviePoster: data.posterH == '' ? data.posterV : data.posterH,
+        imageMode: data.posterH == '' ? "aspectFill" : "widthFix"
       })
 
       console.log("actors: ", data.actors)
+      console.log("moviePoster: ", that.data.moviePoster)
+      console.log("imageMode: ", that.data.imageMode)
     })
 
   },
@@ -116,11 +124,17 @@ Page({
   },
 
   loadMoviePoster: function (e) {
-    var imageHeight = e.detail.height * (this.data.moviePosterWidth / e.detail.width)
     let { stv } = this.data;
-    stv.pageHeight = this.data.stv.windowHeight - imageHeight - 36
+    stv.pageHeight = this.data.stv.windowHeight - this.data.moviePosterHeight - 44
     this.setData({
       stv: this.data.stv
+    })
+  },
+
+  loadMoviePosterError: function (e) {
+    this.setData({
+      moviePoster: "../../images/image_holder_h.png",
+      imageMode: "widthFix"
     })
   },
 

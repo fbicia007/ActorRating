@@ -67,6 +67,7 @@
 
 .stv-container .scroll-view .scroll-view-wrapper .one-scene {
   height: 100%;
+  background-color: white;
 }
 
 .one-scene text {

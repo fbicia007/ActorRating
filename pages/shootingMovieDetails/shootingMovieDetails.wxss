@@ -55,6 +55,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: white;
 }
 
 .stv-container .scroll-view .scroll-view-wrapper {

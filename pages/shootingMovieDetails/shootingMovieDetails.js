@@ -124,7 +124,7 @@ Page({
 
   loadMoviePoster: function (e) {
     let { stv } = this.data;
-    stv.pageHeight = this.data.stv.windowHeight - this.data.moviePosterHeight - 40
+    stv.pageHeight = this.data.stv.windowHeight - this.data.moviePosterHeight - 44
     this.setData({
       stv: this.data.stv
     })
@@ -196,10 +196,10 @@ Page({
   },
 
   onPhotoClicked: function(e) {
-    // var data = e.currentTarget.dataset
-    // wx.navigateTo({
-    //   url: '../actorDetails/actorDetails?id=' + data.id,
-    // })
+    var data = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../actorDetails/actorDetails?id=' + data.id,
+    })
   },
 
   onVoteClicked: function(e) {

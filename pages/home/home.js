@@ -11,6 +11,7 @@ Page({
    */
   data: {
     films: [{}, {}],
+    filmsInfo: [{}, {}],
     userInfo: {},
     logged: false,
     takeSession: false,
@@ -26,7 +27,7 @@ Page({
     })
 
     // loadFilms(this)
-
+    
     if (this.data.logged) {
       loadFilms(this)
     } else {
@@ -81,6 +82,24 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  loadMoviePosterError: function (e) {
+    var status = e.target.dataset.status
+    var id = e.target.dataset.id
+    var films = this.data.films
+    var data = films[status].data
+    
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] != null && data[i].id == id) {
+        console.log("film: ", data[i])
+        data[i].posterV = "../../images/image_holder_v.png"
+      }
+    }
+
+    this.setData({
+      films: films
+    })
   },
 
   onDetailClicked: function (e) {
@@ -176,16 +195,27 @@ function loadFilms(that) {
   }
 
   var titlelist = app.globalData.pageTypelist
+  var films = []
+  var filmsInfo = []
   for (let i = 0; i < statusList.length; i++) {
     app.getFilmInfo(statusList[i], 0, 7, function (res) {
       showLoading = false
       wx.hideLoading()
       var data = res.data
 
-      that.data.films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
+      // that.data.films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
+      // that.setData({
+      //   films: that.data.films
+      // })
+
+      films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
+      filmsInfo[i] = { data: data }
+
       that.setData({
-        films: that.data.films
+        films: films,
+        filmsInfo: filmsInfo,
       })
+
     })
   }
 }
