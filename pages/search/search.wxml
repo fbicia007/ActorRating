@@ -8,7 +8,7 @@
 
 <view wx:for="{{films}}" wx:key="unique">
   <view class='item' hover-class="hover" data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
-    <image class="film-photo" src="{{item.posterV}}" mode='aspectFit'></image>
+    <image class="film-photo" src="{{item.posterV}}" binderror='loadMoviePosterError' data-id='{{item.id}}' mode='aspectFit'></image>
     <text class='film-name'>{{item.title}}</text>
   </view>
 </view>

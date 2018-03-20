@@ -17,7 +17,9 @@ Page({
     selectedSrc: '../../images/rating_full.png',
     halfSrc: '../../images/rating_half.png',
     actor: "",
-    averageRating: ""
+    averageRating: "",
+    actorPhoto: "",
+    loadActorPhotoSuccess: true
   },
 
   /**
@@ -86,6 +88,13 @@ Page({
 
   },
 
+  loadActorPhotoError: function (e) {
+    this.setData({
+      actorPhoto: "../../images/image_holder_v.png",
+      loadActorPhotoSuccess: false
+    })
+  },
+
   onCommentClicked: function () {
     var that = this
     wx.navigateTo({
@@ -119,6 +128,7 @@ function loadActorDetails(that, openId, actorId) {
 
     that.setData({
       actor: data,
+      actorPhoto: data.photo,
       averageRating: Math.round(data.averageRating)
     })
 

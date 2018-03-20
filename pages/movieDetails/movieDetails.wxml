@@ -22,7 +22,7 @@
           <view hidden='{{activeTab == 0}}'>
             <view wx:for="{{actors}}" wx:key="unique">
               <view class='item' data-id='{{item.id}}'>
-                <image class="actor-photo" src="{{item.photo}}" mode='aspectFit'></image>
+                <image class="actor-photo" src="{{item.photo}}" bindtap='onPhotoClicked' binderror='loadActorPhotoError' data-id='{{item.id}}' mode='aspectFit'></image>
                 <text class='actor-name'>{{item.name}} 饰演 {{item.role}}</text>
                 <view class='actor-like' hover-class="hover" bindtap='onLikeClicked' data-movie-id="{{movie.id}}" data-actor-id="{{item.id}}" data-like-symbol="{{item.likeSymbol}}">
                   <view wx:if="{{item.likeSymbol}}">

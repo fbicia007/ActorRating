@@ -1,34 +1,34 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header" style='height: {{headerHeight}}rpx'>
-    <image class="header-bg" src="{{actor.photo}}" style='height: {{headerHeight}}rpx' mode='aspectFill'></image>
+    <image class="header-bg" src="{{actorPhoto}}" style='height: {{headerHeight}}rpx' binderror='loadActorPhotoError' mode='aspectFill' wx:if="{{loadActorPhotoSuccess}}"></image>
     <view class='header-content'>
-        <view class="header-left">
-      <image src="{{actor.photo}}"></image>
-      <view></view>
-    </view>
-    <view class="header-right">
-      <view>
-        <text class="header-right-name-label mb4">姓名：</text>
-        <text class="header-right-name mb4">{{actor.name}}</text>
+      <view class="header-left">
+        <image src="{{actorPhoto}}" binderror='loadActorPhotoError'></image>
+        <view></view>
       </view>
-      <view>
-        <text class="header-right-other-label mb4">生日：</text>
-        <text class="header-right-other mb4">{{actor.birthday}}</text>
-      </view>
-      <view>
-        <text class="header-right-other-label mb4">星座：</text>
-        <text class="header-right-other mb4">{{actor.constellation}}</text>
-      </view>
-      <view>
-        <text class="header-right-other-label mb4">出生地：</text>
-        <text class="header-right-other mb4">{{actor.birthplace}}</text>
-      </view>
-      <view>
-        <text class="header-right-other-label mb4">职业：</text>
-        <text class="header-right-other mb4">{{actor.profession}}</text>
-      </view>
-      <!-- <view wx:if="{{showRating}}">
+      <view class="header-right">
+        <view>
+          <text class="header-right-name-label mb4">姓名：</text>
+          <text class="header-right-name mb4">{{actor.name}}</text>
+        </view>
+        <view>
+          <text class="header-right-other-label mb4">生日：</text>
+          <text class="header-right-other mb4">{{actor.birthday}}</text>
+        </view>
+        <view>
+          <text class="header-right-other-label mb4">星座：</text>
+          <text class="header-right-other mb4">{{actor.constellation}}</text>
+        </view>
+        <view>
+          <text class="header-right-other-label mb4">出生地：</text>
+          <text class="header-right-other mb4">{{actor.birthplace}}</text>
+        </view>
+        <view>
+          <text class="header-right-other-label mb4">职业：</text>
+          <text class="header-right-other mb4">{{actor.profession}}</text>
+        </view>
+        <!-- <view wx:if="{{showRating}}">
         <view class='rating'>
           <block wx:for="{{stars}}" wx:key="item.id">
             <image class="star-image" style="left: {{item*30}}rpx; margin-left: {{ratingMarginLeft}}px" src="{{(rating/2) > item ?((rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
@@ -42,7 +42,7 @@
           <text class="header-right-other mb4">未达到最少评分条件</text>
         </view>
       </view> -->
-    </view>
+      </view>
     </view>
 
     <!-- <view class="header-button">
@@ -145,7 +145,7 @@
         </view>
         <view class="comment">
           <text class="comment-name">{{comments.nickName}}</text>
-         <view>
+          <view>
             <block wx:for="{{stars}}" wx:key="comments.id">
               <image class="comment-star" src="{{(comments.rating/2) > item ?((comments.rating/2)-item == 0.5?halfSrc:selectedSrc) : normalSrc}}"></image>
             </block>

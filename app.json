@@ -30,7 +30,7 @@
         "selectedIconPath": "images/actor_selected.png",
         "iconPath": "images/actor_unselected.png",
         "pagePath": "pages/actorList/actorList",
-        "text": "演员"
+        "text": "选角"
       }
     ]
   }

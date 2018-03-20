@@ -11,7 +11,7 @@
   </view>
   <view wx:for="{{list.data}}" wx:for-item="actors" wx:for-index="idx" wx:key="unique">
     <view class='item' hover-class="hover" data-id='{{actors.id}}' bindtap='onActorClicked'>
-      <image class="actor-photo" src="{{actors.photo}}" mode='aspectFit'></image>
+      <image class="actor-photo" src="{{actors.photo}}" binderror='loadActorPhotoError' data-section='{{list.section}}' data-id='{{actors.id}}' mode='aspectFit'></image>
       <text class='actor-name'>{{actors.name}}</text>
       <view wx:if="{{list.section == ''}}">
         <block wx:for="{{stars}}" wx:key="actors.id">

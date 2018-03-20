@@ -85,11 +85,7 @@ Page({
   onReachBottom: function () {
     if (this.data.hasMore) {
       var count = this.data.count
-      this.setData({
-        start: 0 + count,
-        count: 15 + count
-      })
-      onSearchRequest(this, this.data.searchText, this.data.start, this.data.count)
+      onSearchRequest(this, this.data.searchText, this.data.start + count, this.data.count + count)
     }
   },
 
@@ -98,6 +94,27 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  loadActorPhotoError: function (e) {
+    var section = e.target.dataset.section
+    var id = e.target.dataset.id
+    var actors = this.data.actors
+    if (section == "") {
+      var data = this.data.actors[0].data
+    } else {
+      var data = this.data.actors[1].data
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] != null && data[i].id == id) {
+        data[i].photo = "../../images/image_holder_v.png"
+      }
+    }
+
+    this.setData({
+      actors: actors
+    })
   },
 
   searchInputEvent: function (e) {
@@ -132,7 +149,8 @@ Page({
 function onSearchRequest(that, value, start, count) {
   that.setData({
     searchText: value,
-    actors: ""
+    start: start,
+    count: count
   })
   app.getActors(value, start, count, function (res) {
     var dataWithRating = []
@@ -140,8 +158,8 @@ function onSearchRequest(that, value, start, count) {
     var averageRating = []
     if (start != 0) {
       dataWithRating = that.data.actors[0].data
-      dataWithoutRating = that.data.actors[1].data
       averageRating = that.data.actors[0].rating
+      dataWithoutRating = that.data.actors[1].data
     }  
 
     var list = [{ "section": "", data: dataWithRating, rating: averageRating},

@@ -96,12 +96,14 @@
 
 .card-title {
   margin: 0rpx 20rpx;
+  font-size: 35rpx;
 }
 
 .more-btn {
   border: 0px solid #fff !important;
   color: #2aac5e !important;
-  line-height: 1;
+  line-height: 1.2;
+  font-size: 35rpx;
   margin: 0;
 }
 
@@ -123,7 +125,7 @@
 }
 
 .actor-name {
-  font-size: 20rpx;
+  font-size: 30rpx;
   justify-content: center;
 }
 
@@ -149,6 +151,11 @@
   width: 64rpx;
   height: 64rpx;
   padding: 0rpx 0rpx;
+}
+
+.vote-text {
+  font-size: 20rpx;
+  justify-content: center;
 }
 
 .hover {

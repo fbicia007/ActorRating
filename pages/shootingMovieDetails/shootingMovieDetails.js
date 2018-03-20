@@ -130,6 +130,26 @@ Page({
     })
   },
 
+  loadActorPhotoError: function (e) {
+    var roleId = e.target.dataset.roleId
+    var actorId = e.target.dataset.actorId
+    var roles = this.data.roles
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i] != null && roles[i].id == roleId) {
+        var actors = roles[i].actors
+        for (let j = 0; j < actors.length; j++) {
+          if (actors[j] != null && actors[j].id == actorId) {
+            actors[j].photo = "../../images/image_holder_v.png"
+          }
+        }
+      }
+    }
+
+    this.setData({
+      roles: roles
+    })
+  },
+
   updateSelectedPage(page) {
     let { tabs, stv, activeTab } = this.data
     activeTab = page
@@ -198,7 +218,7 @@ Page({
   onPhotoClicked: function(e) {
     var data = e.currentTarget.dataset
     wx.navigateTo({
-      url: '../actorDetails/actorDetails?id=' + data.id,
+      url: '../actorDetails/actorDetails?id=' + data.actorId,
     })
   },
 

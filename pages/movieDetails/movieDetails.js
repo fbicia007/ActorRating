@@ -68,8 +68,6 @@ Page({
       })
 
       console.log("actors: ", data.actors)
-      console.log("moviePoster: ", that.data.moviePoster)
-      console.log("imageMode: ", that.data.imageMode)
     })
 
   },
@@ -138,6 +136,21 @@ Page({
     })
   },
 
+  loadActorPhotoError: function (e) {
+    var id = e.target.dataset.id
+    var actors = this.data.actors
+
+    for (let i = 0; i < actors.length; i++) {
+      if (actors[i] != null && actors[i].id == id) {
+        actors[i].photo = "../../images/image_holder_v.png"
+      }
+    }
+
+    this.setData({
+      actors: actors
+    })
+  },
+
   updateSelectedPage(page) {
     let { tabs, stv, activeTab } = this.data;
     activeTab = page;
@@ -148,6 +161,13 @@ Page({
 
   handlerTabTap(e) {
     this.updateSelectedPage(e.currentTarget.dataset.index);
+  },
+
+  onPhotoClicked: function (e) {
+    var data = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../actorDetails/actorDetails?id=' + data.id,
+    })
   },
 
   onLikeClicked: function(e) {

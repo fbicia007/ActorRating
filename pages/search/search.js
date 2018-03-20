@@ -79,11 +79,7 @@ Page({
   onReachBottom: function () {
     if (this.data.hasMore) {
       var count = this.data.count
-      this.setData({
-        start: 0 + count,
-        count: 15 + count
-      })
-      onSearchRequest(this, this.data.searchText, this.data.start, this.data.count)
+      onSearchRequest(this, this.data.searchText, this.data.start + count, this.data.count + count)
     }
   },
 
@@ -92,6 +88,21 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  loadMoviePosterError: function (e) {
+    var id = e.target.dataset.id
+    var films = this.data.films
+
+    for (let i = 0; i < films.length; i++) {
+      if (films[i] != null && films[i].id == id) {
+        films[i].posterV = "../../images/image_holder_v.png"
+      }
+    }
+
+    this.setData({
+      films: films
+    })
   },
   
   searchInputEvent: function (e) {
@@ -131,7 +142,9 @@ Page({
 
 function onSearchRequest(that, value, start, count) {
   that.setData({
-    searchText: value
+    searchText: value,
+    start: start,
+    count: count
   })
   app.getSearchRequest(value, start, count, function (res) {
     var data = []
