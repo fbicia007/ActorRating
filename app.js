@@ -7,7 +7,6 @@ App({
     qcloud.setLoginUrl(config.service.loginUrl)
   },
   globalData: {
-    // userInfo: { openId: "oUaRM5U1am9wsIGWXc8TiZ4vJqoU"},
     userInfo: "",
     reloadActorDetail: false,
     reloadActorList: false,

@@ -1,3 +1,5 @@
+var wxLogin = require('../../login/wxLogin.js')
+
 var app = getApp()
 var timer
 
@@ -117,9 +119,18 @@ Page({
 
   onActorClicked: function (e) {
     var data = e.currentTarget.dataset
-    wx.navigateTo({
-      url: '../actorDetails/actorDetails?id=' + data.id,
-    })
+    if (app.globalData.userInfo.openId) {
+      openDetail(data)
+    } else {
+      var that = this
+      wxLogin.wxLogin(this, function (result) {
+        app.globalData.userInfo = result.data.data
+        openDetail(data)
+      },
+        function (error) {
+
+        })
+    }
   },
 
   onSearchClicked: function (e) {
@@ -176,5 +187,11 @@ function onSearchRequest(that, start, count) {
       actors: list
     })
     
+  })
+}
+
+function openDetail(data) {
+  wx.navigateTo({
+    url: '../actorDetails/actorDetails?id=' + data.id,
   })
 }

@@ -1,6 +1,4 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
+var wxLogin = require('../../login/wxLogin.js')
 
 var app = getApp()
 
@@ -12,7 +10,6 @@ Page({
   data: {
     films: [{}, {}],
     filmsInfo: [{}, {}],
-    userInfo: {},
     logged: false,
     takeSession: false,
     requestResult: ''
@@ -26,12 +23,20 @@ Page({
       title: '演员评分',
     })
 
-    // loadFilms(this)
-    
     if (this.data.logged) {
       loadFilms(this)
     } else {
-      login(this)
+      var that = this
+      wxLogin.wxLogin(this, function (result) {
+        that.setData({
+          logged: true
+        })
+        app.globalData.userInfo = result.data.data
+        loadFilms(that)
+      },
+        function (error) {
+          loadFilms(that)
+        })
     }
   },
 
@@ -89,7 +94,7 @@ Page({
     var id = e.target.dataset.id
     var films = this.data.films
     var data = films[status].data
-    
+
     for (let i = 0; i < data.length; i++) {
       if (data[i] != null && data[i].id == id) {
         console.log("film: ", data[i])
@@ -105,15 +110,22 @@ Page({
   onDetailClicked: function (e) {
     var data = e.currentTarget.dataset
     console.log("click id: ", data.id, " stauts: ", data.status)
-    if (data.status == 1) {
-      wx.navigateTo({
-        url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
-      })
+    if (app.globalData.userInfo.openId) {
+      openDetail(data)
     } else {
-      wx.navigateTo({
-        url: '../shootingMovieDetails/shootingMovieDetails?id=' + data.id + "&status=" + data.status,
-      })
+      var that = this
+      wxLogin.wxLogin(this, function (result) {
+        that.setData({
+          logged: true
+        })
+        app.globalData.userInfo = result.data.data
+        openDetail(data)
+      },
+        function (error) {
+
+        })
     }
+
 
   },
 
@@ -133,89 +145,46 @@ Page({
 
 })
 
-function login(that) {
-  util.showBusy('正在登录')
-  // 调用登录接口
-  qcloud.login({
-    success(result) {
-      if (result) {
-        console.log("loginSuccess1: ", result)
-        util.showSuccess('登录成功')
-        that.setData({
-          userInfo: result,
-          logged: true
-        })
-        app.globalData.userInfo = result
-        loadFilms(that)
-      } else {
-        // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-        qcloud.request({
-          url: config.service.requestUrl,
-          login: true,
-          success(result) {
-            util.showSuccess('登录成功')
-            console.log("loginSuccess2: ", result)
-            that.setData({
-              userInfo: result.data.data,
-              logged: true
-            })
-            app.globalData.userInfo = result.data.data
-            loadFilms(that)
-          },
+function loadFilms(that) {
+  setTimeout(function () {
+    wx.showLoading({
+      title: '全力加载中...',
+    })
 
-          fail(error) {
-            util.showModel('请求失败', error)
-            console.log('request fail', error)
-          }
-        })
-      }
-    },
-
-    fail(error) {
-      util.showModel('登录失败', error)
-      console.log('登录失败', error)
+    var statusList = new Array()
+    for (var status in app.globalData.statusList) {
+      statusList.push(app.globalData.statusList[status])
     }
-  })
+
+    var titlelist = app.globalData.pageTypelist
+    var films = []
+    var filmsInfo = []
+    for (let i = 0; i < statusList.length; i++) {
+      app.getFilmInfo(statusList[i], 0, 7, function (res) {
+        wx.hideLoading()
+        var data = res.data
+
+        films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
+        filmsInfo[i] = { data: data }
+
+        that.setData({
+          films: films,
+          filmsInfo: filmsInfo,
+        })
+
+      })
+    }
+  }, 1500)
 }
 
-function loadFilms(that) {
-  var showLoading = true
-  setTimeout(function () {
-    util.hideToast()
-    if (showLoading) {
-      wx.showLoading({
-        title: '全力加载中...',
-      })
-    }
-  }, 1000)
-
-  var statusList = new Array()
-  for (var status in app.globalData.statusList) {
-    statusList.push(app.globalData.statusList[status])
-  }
-
-  var titlelist = app.globalData.pageTypelist
-  var films = []
-  var filmsInfo = []
-  for (let i = 0; i < statusList.length; i++) {
-    app.getFilmInfo(statusList[i], 0, 7, function (res) {
-      showLoading = false
-      wx.hideLoading()
-      var data = res.data
-
-      // that.data.films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
-      // that.setData({
-      //   films: that.data.films
-      // })
-
-      films[i] = { title: titlelist[statusList[i]], data: data, status: statusList[i] }
-      filmsInfo[i] = { data: data }
-
-      that.setData({
-        films: films,
-        filmsInfo: filmsInfo,
-      })
-
+function openDetail(data) {
+  if (data.status == 1) {
+    wx.navigateTo({
+      url: '../movieDetails/movieDetails?id=' + data.id + "&status=" + data.status,
+    })
+  } else {
+    wx.navigateTo({
+      url: '../shootingMovieDetails/shootingMovieDetails?id=' + data.id + "&status=" + data.status,
     })
   }
 }

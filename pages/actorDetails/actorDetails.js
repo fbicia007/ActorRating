@@ -1,6 +1,4 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
+var wxLogin = require('../../login/wxLogin.js')
 
 var app = getApp()
 
@@ -100,15 +98,18 @@ Page({
   },
 
   onCommentClicked: function () {
-    var openId = app.globalData.userInfo.openId
-    console.log("openId: ", openId)
-    if (openId) {
-      var that = this
-      wx.navigateTo({
-        url: '../comment/comment?actorId=' + that.data.actor.id + '&commented=' + that.data.commented,
-      })
+    console.log("openId: ", app.globalData.userInfo)
+    if (app.globalData.userInfo.openId) {
+      openComments(this)
     } else {
-      login(this)
+      var that = this
+      wxLogin.wxLogin(this, function (result) {
+        app.globalData.userInfo = result.data.data
+        openComments(that)
+      },
+        function (error) {
+
+        })
     }
 
   },
@@ -176,51 +177,8 @@ function loadActorDetails(that, openId, actorId) {
   }) 
 }
 
-function login(that) {
-  util.showBusy('正在登录')
-  // 调用登录接口
-  qcloud.login({
-    success(result) {
-      if (result) {
-        console.log("loginSuccess1: ", result)
-        util.showSuccess('登录成功')
-        that.setData({
-          userInfo: result,
-          logged: true
-        })
-        app.globalData.userInfo = result
-        var openId = app.globalData.userInfo.openId
-        var actorId = that.data.actor.id
-        loadActorDetails(that, openId, actorId)
-      } else {
-        // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-        qcloud.request({
-          url: config.service.requestUrl,
-          login: true,
-          success(result) {
-            util.showSuccess('登录成功')
-            console.log("loginSuccess2: ", result)
-            that.setData({
-              userInfo: result.data.data,
-              logged: true
-            })
-            app.globalData.userInfo = result.data.data
-            var openId = app.globalData.userInfo.openId
-            var actorId = that.data.actor.id
-            loadActorDetails(that, openId, actorId)
-          },
-
-          fail(error) {
-            util.showModel('请求失败', error)
-            console.log('request fail', error)
-          }
-        })
-      }
-    },
-
-    fail(error) {
-      util.showModel('登录失败', error)
-      console.log('登录失败', error)
-    }
+function openComments(that) {
+  wx.navigateTo({
+    url: '../comment/comment?actorId=' + that.data.actor.id + '&commented=' + that.data.commented,
   })
 }
