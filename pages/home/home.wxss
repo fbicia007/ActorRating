@@ -50,8 +50,7 @@
   background-color: #fff;
   display: flex;
   justify-content: space-between;
-  margin:0;
-  padding-top:12px;
+  padding-top: 24rpx;
   align-items: center;  
 }
 .film-item{
@@ -76,15 +75,17 @@
   background-color: #F0F0F0;
 } 
 .list-title{
+  font-size: 35rpx;
   font-weight: 600;
   line-height: 1;
   margin:0;
 }
+
 .list-title::before{
   content: "";
   width: 0;
   height: 0;
-  border: 1px solid #2aac5e;
+  border: 2px solid #2aac5e;
   margin-right: 6px;
 }
 

@@ -28,6 +28,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '演员信息',
+    })
+
     var that = this
     var openId = app.globalData.userInfo.openId
     var actorId = options.id

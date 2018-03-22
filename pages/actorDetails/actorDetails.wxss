@@ -60,14 +60,13 @@
 .header-right-name-label {
   color: white;
   margin-top: 16rpx;
-  font-size: 36rpx;
+  font-size: 30rpx;
 }
 
 .header-right-name {
   color: white;
   margin-top: 16rpx;
-  font-size: 32rpx;
-  font-style: italic;
+  font-size: 36rpx;
 }
 
 .header-right-other-label {
@@ -77,8 +76,7 @@
 
 .header-right-other {
   color: white;
-  font-size: 26rpx;
-  font-style: italic;
+  font-size: 30rpx;
   word-break:break-all;
 }
 

@@ -154,7 +154,7 @@
 }
 
 .vote-text {
-  font-size: 20rpx;
+  font-size: 30rpx;
   justify-content: center;
 }
 

@@ -129,7 +129,7 @@ Page({
 
   onSearchClicked: function (e) {
     wx.navigateTo({
-      url: '../search/search'
+      url: '../searchMovie/searchMovie'
     })
   }
 })

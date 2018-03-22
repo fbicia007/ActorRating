@@ -10,6 +10,8 @@ Page({
     inputText: "",
     searchText: "",
     actors: [],
+    actorsLength: -1,
+    focus: true,
     start: 0,
     count: 0,
     hasMore: true
@@ -49,7 +51,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    this.setData({
+      focus: false
+    })
+    wx.hideKeyboard()
   },
 
   /**
@@ -88,7 +93,8 @@ Page({
     }
 
     this.setData({
-      actors: actors
+      actors: actors,
+      actorsLength: actors.length
     })
   },
 
@@ -109,7 +115,8 @@ Page({
   onClearClicked: function (e) {
     this.setData({
       inputText: "",
-      actors: ""
+      actors: [],
+      actorsLength: actors.length
     })
   },
 
@@ -151,7 +158,8 @@ function onSearchRequest(that, value, start, count) {
     }
 
     that.setData({
-      actors: actors
+      actors: actors,
+      actorsLength: actors.length
     })
   })
 }

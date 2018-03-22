@@ -5,10 +5,14 @@
     <text class='clearButtonText' bindtap='onClearClicked'>取消</text>
   </view>
 </view>
-
-<view wx:for="{{films}}" wx:key="unique">
-  <view class='item' hover-class="hover" data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
-    <image class="film-photo" src="{{item.posterV}}" binderror='loadMoviePosterError' data-id='{{item.id}}' mode='aspectFit'></image>
-    <text class='film-name'>{{item.title}}</text>
+<view wx:if="{{filmsLength == 0}}">
+  <text class='place-holder'>无结果</text>
+</view>
+<view wx:elif="{{filmsLength > 0}}">
+  <view wx:for="{{films}}" wx:key="unique">
+    <view class='item' hover-class="hover" data-id='{{item.id}}' data-status="{{item.status}}" bindtap='onFilmClicked'>
+      <image class="film-photo" src="{{item.posterV}}" binderror='loadMoviePosterError' data-id='{{item.id}}' mode='aspectFit'></image>
+      <text class='film-name'>{{item.title}}</text>
+    </view>
   </view>
 </view>

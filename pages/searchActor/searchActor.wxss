@@ -31,6 +31,12 @@
   color: #fff;
 }
 
+.place-holder {
+  display: flex;
+  padding: 40rpx 0;
+  justify-content: center;
+}
+
 .item {
   display: flex;
   padding: 10rpx 10rpx;

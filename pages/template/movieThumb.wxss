@@ -15,7 +15,6 @@
   padding-bottom: 16rpx;
 }
 .film-title{
-  font-weight: 600;
   line-height: 1;
 }
 .hover{

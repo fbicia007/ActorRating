@@ -11,6 +11,7 @@ Page({
     searchText: "",
     focus: true,
     films: [],
+    filmsLength: -1,
     start: 0,
     count: 0,
     hasMore: true
@@ -23,16 +24,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '搜索影片',
     })
-
-    // this.setData({
-    //   start: 0,
-    //   count: 15
-    // })
-
-    // var that = this
-    // setTimeout(function () {
-    //   onSearchRequest(that, that.data.inputText, that.data.start, that.data.count)
-    // }, 300)
   },
 
   /**
@@ -101,24 +92,30 @@ Page({
     }
 
     this.setData({
-      films: films
+      films: films,
+      filmsLength: films.length
     })
   },
   
   searchInputEvent: function (e) {
-    var value = e.detail.value
-    clearTimeout(timer)
-    var that = this
-    timer = setTimeout(function() {
-      onSearchRequest(that, value, 0, 15)
-    }, 300)
-    
+    var value = e.detail.value.trim()
+    if (value != "") {
+      clearTimeout(timer)
+      var that = this
+      timer = setTimeout(function () {
+        that.setData({
+          inputText: value
+        })
+        onSearchRequest(that, value, 0, 15)
+      }, 300)
+    }
   },
 
   onClearClicked: function (e) {
     this.setData({
       inputText: "",
-      films: ""
+      films: [],
+      filmsLength: films.length
     })
   },
 
@@ -169,7 +166,8 @@ function onSearchRequest(that, value, start, count) {
     }
 
     that.setData({
-      films: films
+      films: films,
+      filmsLength: films.length
     })
   })
 }
