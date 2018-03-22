@@ -4,7 +4,7 @@
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
 // var host = 'https://nd2xiqo4.qcloud.la'
-var host = 'https://xuwang.de/actorrating/server'
+var host = 'https://bloomingstars.cn/actorrating/server'
 var config = {
 
   // 下面的地址配合云端 Demo 工作

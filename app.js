@@ -11,7 +11,7 @@ App({
     userInfo: "",
     reloadActorDetail: false,
     reloadActorList: false,
-    basicUrl: "https://xuwang.de/actorrating",
+    basicUrl: "https://bloomingstars.cn/actorrating",
     statusList: { "0": "coming_soon", "1": "in_theaters" },
     pageTypelist: { "coming_soon": "即将拍摄", "in_theaters": "正在热映" }
   },
@@ -19,7 +19,7 @@ App({
     var that = this
 
     wx.request({
-      url: that.globalData.basicUrl + "/" + pageType + '?start=' + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/" + pageType + '.php?start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },
@@ -31,7 +31,7 @@ App({
   getFilmDetail: function (pageType, id, openId, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/" + pageType + "?openId=" + openId + '&id=' + id,
+      url: that.globalData.basicUrl + "/" + pageType + ".php?openId=" + openId + '&id=' + id,
       header: {
         "Content-Type": "json",
       },
@@ -42,7 +42,6 @@ App({
   },
   getComingSoonFilmDetail: function (pageType, id, openId, cb) {
     var that = this
-    console.log("url: ", that.globalData.basicUrl + "/" + pageType + ".php?openId=" + openId + '&id=' + id)
     wx.request({
       url: that.globalData.basicUrl + "/" + pageType + ".php?openId=" + openId + '&id=' + id,
       header: {
@@ -56,7 +55,7 @@ App({
   getSearchMovieRequest: function (text, start, count, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/search?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/search.php?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },
@@ -68,7 +67,7 @@ App({
   getLikeRequest: function (openId, movieId, actorId, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/like?openId=" + openId + '&movieId=' + movieId + '&actorId=' + actorId,
+      url: that.globalData.basicUrl + "/like.php?openId=" + openId + '&movieId=' + movieId + '&actorId=' + actorId,
       header: {
         "Content-Type": "json",
       },
@@ -79,7 +78,6 @@ App({
   },
   getVoteRequest: function (openId, actorId, roleId, cb) {
     var that = this
-    console.log("vote: ", that.globalData.basicUrl + "/coming_soon_vote.php?openId=" + openId + '&actorId=' + actorId + '&roleId=' + roleId)
     wx.request({
       url: that.globalData.basicUrl + "/coming_soon_vote.php?openId=" + openId + '&actorId=' + actorId + '&roleId=' + roleId,
       header: {
@@ -93,7 +91,7 @@ App({
   getActors: function (start, count, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/actors?start=" + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/actors.php?start=" + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },
@@ -105,7 +103,7 @@ App({
   getSearchActorRequest: function (text, start, count, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/actors?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
+      url: that.globalData.basicUrl + "/actors.php?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
       header: {
         "Content-Type": "json",
       },
@@ -117,7 +115,7 @@ App({
   getActorDetail: function (id, cb) {
     var that = this
     wx.request({
-      url: that.globalData.basicUrl + "/actors?id=" + id,
+      url: that.globalData.basicUrl + "/actors.php?id=" + id,
       header: {
         "Content-Type": "json",
       },
@@ -128,7 +126,6 @@ App({
   },
   getMyComment: function (openId, actorId, cb) {
     var that = this
-    console.log("getMyComment url: ", that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId)
     wx.request({
       url: that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId,
       header: {
@@ -141,7 +138,6 @@ App({
   },
   doComment: function (openId, actorId, rating, comment, cb) {
     var that = this
-    console.log("comment url: ", that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId + '&rating=' + rating + '&comment=' + comment)
     wx.request({
       url: that.globalData.basicUrl + "/actorVote.php?openId=" + openId + '&actorId=' + actorId + '&rating=' + rating + '&comment=' + comment,
       header: {
