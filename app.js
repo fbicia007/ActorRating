@@ -53,7 +53,7 @@ App({
       }
     })
   },
-  getSearchRequest: function (text, start, count, cb) {
+  getSearchMovieRequest: function (text, start, count, cb) {
     var that = this
     wx.request({
       url: that.globalData.basicUrl + "/search?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
@@ -90,9 +90,20 @@ App({
       }
     })
   },
-  getActors: function (text, start, count, cb) {
+  getActors: function (start, count, cb) {
     var that = this
-    console.log("getActors url: ", that.globalData.basicUrl + "/actors?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count)
+    wx.request({
+      url: that.globalData.basicUrl + "/actors?start=" + start + '&count=' + count,
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        cb(res)
+      }
+    })
+  },
+  getSearchActorRequest: function (text, start, count, cb) {
+    var that = this
     wx.request({
       url: that.globalData.basicUrl + "/actors?srch_text=%25" + text + "%25" + '&start=' + start + '&count=' + count,
       header: {
@@ -105,7 +116,6 @@ App({
   },
   getActorDetail: function (id, cb) {
     var that = this
-    console.log("getActorDetail url: ", that.globalData.basicUrl + "/actors?id=" + id)
     wx.request({
       url: that.globalData.basicUrl + "/actors?id=" + id,
       header: {

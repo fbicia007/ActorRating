@@ -7,8 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputText: "",
-    searchText: "",
     actors: [],
     start: 0,
     count: 0,
@@ -24,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '演员',
+      title: '演员评分',
     })
 
     this.setData({
@@ -34,7 +32,7 @@ Page({
 
     var that = this
     setTimeout(function () {
-      onSearchRequest(that, that.data.inputText, that.data.start, that.data.count)
+      onSearchRequest(that, that.data.start, that.data.count)
     }, 300)
   },
 
@@ -51,7 +49,7 @@ Page({
   onShow: function () {
     if (app.globalData.reloadActorList) {
       app.globalData.reloadActorList = false
-      onSearchRequest(this, this.data.inputText, this.data.start, this.data.count)
+      onSearchRequest(this, this.data.start, this.data.count)
     }
   },
 
@@ -85,7 +83,7 @@ Page({
   onReachBottom: function () {
     if (this.data.hasMore) {
       var count = this.data.count
-      onSearchRequest(this, this.data.searchText, this.data.start + count, this.data.count + count)
+      onSearchRequest(this, this.data.start + count, this.data.count + count)
     }
   },
 
@@ -117,42 +115,26 @@ Page({
     })
   },
 
-  searchInputEvent: function (e) {
-    var value = e.detail.value
-    clearTimeout(timer)
-    var that = this
-    timer = setTimeout(function () {
-      that.setData({
-        inputText: value
-      })
-      onSearchRequest(that, value, 0, 15)
-    }, 300)
-
-  },
-
-  onClearClicked: function (e) {
-    this.setData({
-      inputText: ""
-    })
-    onSearchRequest(this, this.data.inputText, 0, 15)
-  },
-
   onActorClicked: function (e) {
     var data = e.currentTarget.dataset
-    console.log("data: ", data)
     wx.navigateTo({
       url: '../actorDetails/actorDetails?id=' + data.id,
     })
-  }
+  },
+
+  onSearchClicked: function (e) {
+    wx.navigateTo({
+      url: '../searchActor/searchActor'
+    })
+  },
 })
 
-function onSearchRequest(that, value, start, count) {
+function onSearchRequest(that, start, count) {
   that.setData({
-    searchText: value,
     start: start,
     count: count
   })
-  app.getActors(value, start, count, function (res) {
+  app.getActors(start, count, function (res) {
     var dataWithRating = []
     var dataWithoutRating = []
     var averageRating = []

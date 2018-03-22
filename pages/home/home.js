@@ -26,13 +26,13 @@ Page({
       title: '演员评分',
     })
 
-    // loadFilms(this)
+    loadFilms(this)
     
-    if (this.data.logged) {
-      loadFilms(this)
-    } else {
-      login(this)
-    }
+    // if (this.data.logged) {
+    //   loadFilms(this)
+    // } else {
+    //   login(this)
+    // }
   },
 
   /**
@@ -127,7 +127,7 @@ Page({
 
   onSearchClicked: function (e) {
     wx.navigateTo({
-      url: '../search/search'
+      url: '../searchMovie/searchMovie'
     })
   },
 

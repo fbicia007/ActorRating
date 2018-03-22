@@ -1,0 +1,13 @@
+<!--pages/searchActor/searchActor.wxml-->
+<view class="search-container">
+  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}' focus='{{focus}}'></input>
+  <view class='clearButtonView'>
+    <text class='clearButtonText' bindtap='onClearClicked'>取消</text>
+  </view>
+</view>
+<view wx:for="{{actors}}" wx:for-item="actors" wx:key="unique">
+    <view class='item' hover-class="hover" data-id='{{actors.id}}' bindtap='onActorClicked'>
+      <image class="actor-photo" src="{{actors.photo}}" binderror='loadActorPhotoError' data-section='{{list.section}}' data-id='{{actors.id}}' mode='aspectFit'></image>
+      <text class='actor-name'>{{actors.name}}</text>
+    </view>
+</view>

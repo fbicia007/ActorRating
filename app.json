@@ -3,12 +3,12 @@
     "pages/home/home",
     "pages/movieDetails/movieDetails",
     "pages/movieList/movieList",
-    "pages/search/search",
-    "pages/me/me",
+    "pages/searchMovie/searchMovie",
     "pages/shootingMovieDetails/shootingMovieDetails",
     "pages/actorList/actorList",
     "pages/actorDetails/actorDetails",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "pages/searchActor/searchActor"
   ],
   "window": {
     "backgroundTextStyle": "light",

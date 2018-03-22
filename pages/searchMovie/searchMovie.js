@@ -24,15 +24,15 @@ Page({
       title: '搜索影片',
     })
 
-    this.setData({
-      start: 0,
-      count: 15
-    })
+    // this.setData({
+    //   start: 0,
+    //   count: 15
+    // })
 
-    var that = this
-    setTimeout(function () {
-      onSearchRequest(that, that.data.inputText, that.data.start, that.data.count)
-    }, 300)
+    // var that = this
+    // setTimeout(function () {
+    //   onSearchRequest(that, that.data.inputText, that.data.start, that.data.count)
+    // }, 300)
   },
 
   /**
@@ -117,9 +117,9 @@ Page({
 
   onClearClicked: function (e) {
     this.setData({
-      inputText: ""
+      inputText: "",
+      films: ""
     })
-    onSearchRequest(this, this.data.inputText, 0, 15)
   },
 
   onFilmClicked: function (e) {
@@ -146,7 +146,7 @@ function onSearchRequest(that, value, start, count) {
     start: start,
     count: count
   })
-  app.getSearchRequest(value, start, count, function (res) {
+  app.getSearchMovieRequest(value, start, count, function (res) {
     var data = []
     for (var i = 0; i < res.data.length; i++) {
       if (res.data[i] != null) {

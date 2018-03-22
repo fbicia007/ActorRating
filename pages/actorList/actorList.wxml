@@ -1,9 +1,7 @@
 <!--pages/actorList/actorList.wxml-->
 <view class="search-container">
-  <input type="text" bindinput="searchInputEvent" placeholder="搜索" value='{{inputText}}'></input>
-  <view class='clearButtonView'>
-    <text class='clearButtonText' bindtap='onClearClicked'>取消</text>
-  </view>
+  <input type="text" bindtap="onSearchClicked" disabled='true' placeholder="搜索"></input>
+  <icon bindtap="onSearchClicked"  type="search" size="20"/>
 </view>
 <view wx:for="{{actors}}" wx:for-item="list" wx:key="unique">
   <view class="section-item-header">
